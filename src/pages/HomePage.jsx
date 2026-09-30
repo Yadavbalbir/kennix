@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -84,8 +84,25 @@ const reveal = {
   transition: { duration: 0.55 },
 };
 
-export default function HomePage({ setActivePage, openCircleModal, setSelectedProject, theme = 'dark' }) {
+export default function HomePage({
+  setActivePage,
+  openCircleModal,
+  setSelectedProject,
+  theme = 'dark',
+  initialSection = 'home',
+}) {
   const isDark = theme === 'dark';
+
+  useEffect(() => {
+    const target = initialSection === 'about' ? document.getElementById('about') : null;
+    window.requestAnimationFrame(() => {
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }, [initialSection]);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -170,7 +187,7 @@ export default function HomePage({ setActivePage, openCircleModal, setSelectedPr
         </motion.div>
       </section>
 
-      <section className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-amber-500/10">
+      <section id="about" className="scroll-mt-16 py-20 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-amber-500/10">
         <motion.div {...reveal} className="space-y-12">
           <div className="max-w-4xl space-y-6">
             <span className="text-xs font-bold text-amber-500 tracking-widest uppercase">About</span>

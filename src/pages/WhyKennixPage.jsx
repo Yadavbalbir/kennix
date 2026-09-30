@@ -1,17 +1,7 @@
 import React from 'react';
-import { 
-  Users, 
-  HeartHandshake, 
-  Home, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Eye, 
-  Compass, 
-  FileCheck, 
-  ArrowRight
-} from 'lucide-react';
+import { ShieldCheck, Users } from 'lucide-react';
 
-export default function WhyKennixPage({ openCircleModal, setActivePage }) {
+export default function WhyKennixPage({ openCircleModal }) {
   const points = [
     { num: '01', title: 'A People-First Approach', text: 'Traditional development starts with land and speculative units. KENNIX begins with people, understanding their relationships and requirements before planning.' },
     { num: '02', title: 'The KENNIX Circle', text: 'Families, friends, and community groups can bring their collective requirements together. "Together when you want. Independent when you need."' },
@@ -26,17 +16,17 @@ export default function WhyKennixPage({ openCircleModal, setActivePage }) {
   ];
 
   return (
-    <div className="relative min-h-screen text-slate-100 pt-20">
+    <div className="relative min-h-screen pt-20">
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center space-y-6 border-b border-emerald-950/60">
         <span className="text-xs font-bold text-amber-400 tracking-widest uppercase bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
           WHY KENNIX?
         </span>
-        <h1 className="text-4xl sm:text-6xl font-serif font-bold text-white leading-tight">
+        <h1 className="text-4xl sm:text-6xl font-serif font-bold text-theme-heading leading-tight">
           Because Better Places <br />
           <span className="text-gold-gradient">Start With People.</span>
         </h1>
-        <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          Most developments begin with land, buildings and inventory. KENNIX begins with people. We understand who wants to live there, how they want to live and what they need.
+        <p className="text-base sm:text-lg text-theme-body max-w-3xl mx-auto leading-relaxed">
+          Most developments begin with land, buildings and inventory. <strong className="text-theme-heading">KENNIX begins with people.</strong> We understand who wants to live there, how they want to live and what they need.
         </p>
       </section>
 
@@ -45,15 +35,26 @@ export default function WhyKennixPage({ openCircleModal, setActivePage }) {
           {points.map((pt, i) => (
             <div key={i} className="p-6 rounded-2xl glass-card border border-emerald-500/20 glass-card-hover space-y-3">
               <div className="text-2xl font-serif font-bold text-amber-400">{pt.num}</div>
-              <h3 className="text-xl font-serif font-bold text-white">{pt.title}</h3>
-              <p className="text-xs text-slate-300 leading-relaxed">{pt.text}</p>
+              <h3 className="text-xl font-serif font-bold text-theme-heading">{pt.title}</h3>
+              <p className="text-sm text-theme-body leading-relaxed">{pt.text}</p>
             </div>
           ))}
         </div>
       </section>
 
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center space-y-6 border-b border-amber-500/10">
+        <ShieldCheck className="w-10 h-10 text-amber-500 mx-auto" />
+        <p className="text-xs font-bold text-amber-500 tracking-widest uppercase">Quality Assurance</p>
+        <h2 className="text-3xl sm:text-4xl font-serif font-bold text-theme-heading">
+          Quality You Can See. <span className="text-gold-gradient">Verified at Every Stage.</span>
+        </h2>
+        <p className="text-base text-theme-body max-w-3xl mx-auto">
+          For applicable KENNIX-managed developments, important construction stages and quality checks are documented to give you total visibility.
+        </p>
+      </section>
+
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center space-y-6">
-        <h2 className="text-3xl font-serif font-bold text-white">Connecting People, Creating Places Together.</h2>
+        <h2 className="text-3xl font-serif font-bold text-theme-heading">Connecting People, Creating Places Together.</h2>
         <div className="flex justify-center space-x-4">
           <button
             onClick={openCircleModal}

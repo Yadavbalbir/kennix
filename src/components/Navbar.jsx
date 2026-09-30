@@ -114,20 +114,20 @@ export default function Navbar({ activePage, setActivePage, openCircleModal, the
             {/* ABOUT */}
             <button
               onClick={() => handleNavClick('about')}
-              className={`px-3.5 py-2 text-xs font-bold tracking-wider uppercase rounded-md transition-colors duration-200 ${getNavTextClass(activePage === 'about')}`}
+              className={`order-1 px-3.5 py-2 text-xs font-bold tracking-wider uppercase rounded-md transition-colors duration-200 ${getNavTextClass(activePage === 'about')}`}
             >
               ABOUT
             </button>
 
             {/* SERVICES Mega-Dropdown */}
             <div 
-              className="relative"
+              className="relative order-4"
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
             >
               <button
                 onClick={() => setServicesOpen(!servicesOpen)}
-                className={`px-3.5 py-2 text-xs font-bold tracking-wider uppercase rounded-md transition-colors duration-200 flex items-center space-x-1 ${getNavTextClass(activePage.startsWith('service') || servicesOpen)}`}
+                className={`px-3.5 py-2 text-xs font-bold tracking-wider uppercase rounded-md transition-colors duration-200 flex items-center space-x-1 ${getNavTextClass(servicesList.some(({ id }) => id === activePage) || servicesOpen)}`}
               >
                 <span>SERVICES</span>
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${servicesOpen ? 'rotate-180 text-amber-400' : ''}`} />
@@ -192,31 +192,15 @@ export default function Navbar({ activePage, setActivePage, openCircleModal, the
             {/* WHY KENNIX */}
             <button
               onClick={() => handleNavClick('why-kennix')}
-              className={`px-3.5 py-2 text-xs font-bold tracking-wider uppercase rounded-md transition-colors duration-200 ${getNavTextClass(activePage === 'why-kennix')}`}
+              className={`order-2 px-3.5 py-2 text-xs font-bold tracking-wider uppercase rounded-md transition-colors duration-200 ${getNavTextClass(activePage === 'why-kennix')}`}
             >
               WHY KENNIX
-            </button>
-
-            {/* HOW IT WORKS */}
-            <button
-              onClick={() => handleNavClick('how-it-works')}
-              className={`px-3.5 py-2 text-xs font-bold tracking-wider uppercase rounded-md transition-colors duration-200 ${getNavTextClass(activePage === 'how-it-works')}`}
-            >
-              HOW IT WORKS
-            </button>
-
-            {/* QUALITY ASSURANCE */}
-            <button
-              onClick={() => handleNavClick('quality-assurance')}
-              className={`px-3.5 py-2 text-xs font-bold tracking-wider uppercase rounded-md transition-colors duration-200 ${getNavTextClass(activePage === 'quality-assurance')}`}
-            >
-              QUALITY ASSURANCE
             </button>
 
             {/* PROJECTS */}
             <button
               onClick={() => handleNavClick('projects')}
-              className={`px-3.5 py-2 text-xs font-bold tracking-wider uppercase rounded-md transition-colors duration-200 ${getNavTextClass(activePage === 'projects')}`}
+              className={`order-3 px-3.5 py-2 text-xs font-bold tracking-wider uppercase rounded-md transition-colors duration-200 ${getNavTextClass(activePage === 'projects')}`}
             >
               PROJECTS
             </button>
@@ -224,7 +208,7 @@ export default function Navbar({ activePage, setActivePage, openCircleModal, the
             {/* LOGIN */}
             <button
               onClick={() => handleNavClick('login')}
-              className={`px-3.5 py-2 text-xs font-bold tracking-wider uppercase rounded-md transition-colors duration-200 flex items-center space-x-1 ${getNavTextClass(activePage === 'login')}`}
+              className={`order-5 px-3.5 py-2 text-xs font-bold tracking-wider uppercase rounded-md transition-colors duration-200 flex items-center space-x-1 ${getNavTextClass(activePage === 'login')}`}
             >
               <UserCheck className="w-3.5 h-3.5" />
               <span>LOGIN</span>
@@ -307,9 +291,10 @@ export default function Navbar({ activePage, setActivePage, openCircleModal, the
           style={{ animation: 'fadeInDown 0.3s ease-out' }}
         >
           <div className="flex flex-col space-y-2">
-            <button onClick={() => handleNavClick('home')} className={`text-left px-3 py-2 text-sm font-semibold ${isDark ? 'text-amber-400' : 'text-amber-700'}`}>HOME</button>
             <button onClick={() => handleNavClick('about')} className={`text-left px-3 py-2 text-sm font-semibold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>ABOUT</button>
-            
+            <button onClick={() => handleNavClick('why-kennix')} className={`text-left px-3 py-2 text-sm font-semibold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>WHY KENNIX</button>
+            <button onClick={() => handleNavClick('projects')} className={`text-left px-3 py-2 text-sm font-semibold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>PROJECTS</button>
+
             <div className={`pt-2 border-t ${isDark ? 'border-amber-500/20' : 'border-amber-400/20'}`}>
               <span className={`text-xs uppercase font-bold px-3 tracking-widest ${isDark ? 'text-amber-400' : 'text-amber-700'}`}>SERVICES</span>
               <div className="mt-2 space-y-1 pl-2">
@@ -322,10 +307,6 @@ export default function Navbar({ activePage, setActivePage, openCircleModal, the
               </div>
             </div>
 
-            <button onClick={() => handleNavClick('why-kennix')} className={`text-left px-3 py-2 text-sm font-semibold pt-2 border-t ${isDark ? 'text-slate-200 border-amber-500/20' : 'text-slate-800 border-amber-400/20'}`}>WHY KENNIX</button>
-            <button onClick={() => handleNavClick('how-it-works')} className={`text-left px-3 py-2 text-sm font-semibold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>HOW IT WORKS</button>
-            <button onClick={() => handleNavClick('quality-assurance')} className={`text-left px-3 py-2 text-sm font-semibold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>QUALITY ASSURANCE</button>
-            <button onClick={() => handleNavClick('projects')} className={`text-left px-3 py-2 text-sm font-semibold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>PROJECTS</button>
             <button onClick={() => handleNavClick('login')} className={`text-left px-3 py-2 text-sm font-semibold flex items-center space-x-2 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
               <UserCheck className="w-4 h-4 text-amber-400" />
               <span>LOGIN / DASHBOARD</span>

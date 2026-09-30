@@ -4,9 +4,7 @@ import {
   Users, 
   MapPin, 
   Phone, 
-  Mail, 
-  ArrowRight,
-  ShieldCheck
+  Mail
 } from 'lucide-react';
 
 export default function Footer({ setActivePage, openCircleModal, theme }) {
@@ -45,8 +43,6 @@ export default function Footer({ setActivePage, openCircleModal, theme }) {
             <li><button onClick={() => setActivePage('home')} className={`hover:${isDark ? 'text-white' : 'text-slate-900'} transition-colors cursor-pointer`}>Home</button></li>
             <li><button onClick={() => setActivePage('about')} className={`hover:${isDark ? 'text-white' : 'text-slate-900'} transition-colors cursor-pointer`}>About Us</button></li>
             <li><button onClick={() => setActivePage('why-kennix')} className={`hover:${isDark ? 'text-white' : 'text-slate-900'} transition-colors cursor-pointer`}>Why KENNIX</button></li>
-            <li><button onClick={() => setActivePage('how-it-works')} className={`hover:${isDark ? 'text-white' : 'text-slate-900'} transition-colors cursor-pointer`}>How It Works</button></li>
-            <li><button onClick={() => setActivePage('quality-assurance')} className={`hover:${isDark ? 'text-white' : 'text-slate-900'} transition-colors cursor-pointer`}>Quality Assurance</button></li>
             <li><button onClick={() => setActivePage('projects')} className={`hover:${isDark ? 'text-white' : 'text-slate-900'} transition-colors cursor-pointer`}>Projects Catalog</button></li>
           </ul>
         </div>

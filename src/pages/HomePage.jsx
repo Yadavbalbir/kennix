@@ -6,6 +6,7 @@ import {
   HeartHandshake,
   Home,
   MapPin,
+  Play,
   Sparkles,
   Users,
 } from 'lucide-react';
@@ -88,7 +89,7 @@ export default function HomePage({ setActivePage, openCircleModal, setSelectedPr
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <section className="relative min-h-screen flex items-end justify-center px-4 sm:px-6 lg:px-8 pb-16 overflow-hidden">
+      <section className="relative min-h-[100svh] flex items-end px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 overflow-hidden">
         <div className="absolute inset-0">
           <video
             autoPlay
@@ -101,19 +102,73 @@ export default function HomePage({ setActivePage, openCircleModal, setSelectedPr
           >
             <source src="/kennix-community-placeholder.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/15 to-[#070A09]/90" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,8,6,0.78)_0%,rgba(3,8,6,0.34)_45%,rgba(3,8,6,0.08)_72%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-[#030706]/90" />
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/50 to-transparent" />
         </div>
-        <ThreeCanvasBG density={24} variant="hero" theme={theme} className="opacity-30" />
+        <ThreeCanvasBG density={18} variant="hero" theme={theme} className="opacity-20" />
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 max-w-4xl text-center"
+          className="relative z-10 w-full max-w-7xl mx-auto"
         >
-          <p className="text-sm sm:text-base font-bold tracking-[0.22em] uppercase text-amber-300">
-            Connecting People, Creating Places Together
-          </p>
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-black/25 px-4 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-amber-300 backdrop-blur-md">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
+              </span>
+              A new way to come home
+            </div>
+
+            <h1 className="mt-5 text-5xl sm:text-6xl lg:text-7xl font-serif font-bold leading-[0.95] tracking-[-0.025em] text-white">
+              Your home.
+              <span className="block text-gold-gradient">Your people, closer.</span>
+            </h1>
+
+            <p className="mt-5 max-w-2xl text-sm sm:text-base leading-relaxed text-white/80">
+              Discover thoughtfully planned homes where families, friends and communities can live
+              nearby—together when you want, independent when you need.
+            </p>
+
+            <div className="mt-7 flex flex-col sm:flex-row sm:items-center gap-3">
+              <button
+                onClick={() => setActivePage('projects')}
+                className="group px-6 py-3.5 rounded-full bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 shadow-[0_12px_40px_rgba(245,158,11,0.25)] hover:bg-amber-300"
+              >
+                Explore Homes
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </button>
+              <button
+                onClick={openCircleModal}
+                className="px-6 py-3.5 rounded-full border border-white/20 bg-white/10 text-white font-bold text-xs uppercase tracking-wider backdrop-blur-md inline-flex items-center justify-center gap-2 hover:bg-white/15"
+              >
+                <Users className="w-4 h-4 text-amber-300" />
+                Create My Circle
+              </button>
+              <div className="hidden md:flex ml-2 items-center gap-3 text-white/65">
+                <span className="w-10 h-10 rounded-full border border-white/20 bg-black/20 flex items-center justify-center backdrop-blur-md">
+                  <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.18em] leading-relaxed">
+                  KENNIX<br />story preview
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 pt-5 border-t border-white/15 flex items-center justify-between">
+            <p className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-white/65">
+              Connecting People <span className="text-amber-400">•</span> Creating Places Together
+            </p>
+            <div className="hidden sm:flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-white/50">
+              <span>Discover KENNIX</span>
+              <span className="h-8 w-px bg-white/20" />
+              <span className="inline-block h-8 w-[1px] bg-gradient-to-b from-amber-400 to-transparent animate-pulse" />
+            </div>
+          </div>
         </motion.div>
       </section>
 

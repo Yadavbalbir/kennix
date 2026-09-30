@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function KennixLogo({ size = "md", showTagline = true, className = "" }) {
+export default function KennixLogo({ size = "md", tone = "default", className = "" }) {
   // size variants
   const sizeMap = {
     sm: "h-9 sm:h-10",
@@ -16,7 +16,11 @@ export default function KennixLogo({ size = "md", showTagline = true, className 
       <img 
         src="/logo.png" 
         alt="KENNIX - Connecting People, Creating Places Together" 
-        className={`${heightClass} w-auto object-contain filter drop-shadow-[0_2px_15px_rgba(212,175,55,0.4)] transition-transform duration-300 group-hover:scale-105`}
+        className={`${heightClass} w-auto object-contain transition-all duration-300 group-hover:opacity-90 ${
+          tone === 'light'
+            ? 'brightness-0 invert opacity-95 drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]'
+            : 'drop-shadow-[0_2px_12px_rgba(212,175,55,0.18)]'
+        }`}
       />
     </div>
   );

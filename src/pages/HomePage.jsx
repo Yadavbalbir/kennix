@@ -98,7 +98,7 @@ export default function HomePage({ setActivePage, openCircleModal, setSelectedPr
             playsInline
             poster="/hero-bg.png"
             aria-label="A KENNIX community where families and friends live close together"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover saturate-[0.78] contrast-[1.06] brightness-[0.88]"
           >
             <source src="/kennix-community-placeholder.mp4" type="video/mp4" />
           </video>
@@ -106,8 +106,6 @@ export default function HomePage({ setActivePage, openCircleModal, setSelectedPr
           <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-[#030706]/90" />
           <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/50 to-transparent" />
         </div>
-        <ThreeCanvasBG density={18} variant="hero" theme={theme} className="opacity-20" />
-
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -136,7 +134,7 @@ export default function HomePage({ setActivePage, openCircleModal, setSelectedPr
             <div className="mt-7 flex flex-col sm:flex-row sm:items-center gap-3">
               <button
                 onClick={() => setActivePage('projects')}
-                className="group px-6 py-3.5 rounded-full bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 shadow-[0_12px_40px_rgba(245,158,11,0.25)] hover:bg-amber-300"
+                className="group px-6 py-3.5 rounded-full bg-[#D6B56C] text-[#12130F] font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 shadow-[0_12px_36px_rgba(214,181,108,0.18)] hover:bg-[#E4C986]"
               >
                 Explore Homes
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -145,7 +143,7 @@ export default function HomePage({ setActivePage, openCircleModal, setSelectedPr
                 onClick={openCircleModal}
                 className="px-6 py-3.5 rounded-full border border-white/20 bg-white/10 text-white font-bold text-xs uppercase tracking-wider backdrop-blur-md inline-flex items-center justify-center gap-2 hover:bg-white/15"
               >
-                <Users className="w-4 h-4 text-amber-300" />
+                <Users className="w-4 h-4 text-[#D6B56C]" />
                 Create My Circle
               </button>
               <div className="hidden md:flex ml-2 items-center gap-3 text-white/65">

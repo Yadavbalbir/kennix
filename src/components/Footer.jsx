@@ -20,7 +20,9 @@ export default function Footer({ setActivePage, openCircleModal, theme }) {
         
         {/* Brand Summary */}
         <div className="md:col-span-4 space-y-4">
-          <KennixLogo size="md" tone={isDark ? 'light' : 'default'} />
+          <div className="inline-flex rounded-xl bg-[#F7F4EC] px-3 py-2">
+            <KennixLogo size="md" />
+          </div>
           <p className={`leading-relaxed font-sans text-xs pt-2 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
             KENNIX connects where you live with who you want around you. Bringing property, families, friends, and communities together into thoughtfully planned residential developments.
           </p>

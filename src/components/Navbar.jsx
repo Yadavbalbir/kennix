@@ -67,7 +67,7 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
 
   const navClass = (active) => (
     `relative px-3 py-2 text-[11px] font-semibold tracking-[0.14em] uppercase transition-colors ${
-      active ? 'text-[#D6B56C]' : 'text-white/75 hover:text-white'
+      active ? 'text-[#8A681D]' : 'text-[#202420]/70 hover:text-[#111411]'
     }`
   );
 
@@ -75,14 +75,14 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#090B0A]/95 border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.28)] backdrop-blur-xl'
-          : 'bg-[#090B0A]/82 border-white/10 backdrop-blur-md'
+          ? 'bg-[#F7F4EC]/95 border-black/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-xl'
+          : 'bg-[#F7F4EC]/90 border-black/10 backdrop-blur-md'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
           <button onClick={() => navigate('home')} aria-label="KENNIX Home" className="shrink-0">
-            <KennixLogo size="sm" tone="light" />
+            <KennixLogo size="sm" />
           </button>
 
           <nav className="hidden lg:flex items-center gap-1">
@@ -167,7 +167,7 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
             </button>
             <button
               onClick={() => setMobileMenuOpen((open) => !open)}
-              className="w-10 h-10 rounded-full border border-white/15 text-white flex items-center justify-center"
+              className="w-10 h-10 rounded-full border border-black/15 text-[#162019] flex items-center justify-center"
               aria-label="Toggle navigation"
               aria-expanded={mobileMenuOpen}
             >
@@ -178,7 +178,7 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
       </div>
 
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-white/10 bg-[#090B0A] px-4 py-5 shadow-2xl">
+        <div className="lg:hidden border-t border-black/10 bg-[#F7F4EC] px-4 py-5 shadow-2xl">
           <div className="max-w-7xl mx-auto space-y-1">
             {[
               ['about', 'About'],
@@ -186,14 +186,14 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
               ['projects', 'Projects'],
               ['login', 'Login'],
             ].map(([id, label]) => (
-              <button key={id} onClick={() => navigate(id)} className="w-full rounded-lg px-3 py-3 text-left text-sm font-semibold text-white/80 hover:bg-white/5">
+              <button key={id} onClick={() => navigate(id)} className="w-full rounded-lg px-3 py-3 text-left text-sm font-semibold text-[#202420]/80 hover:bg-black/5">
                 {label}
               </button>
             ))}
-            <div className="pt-4 mt-3 border-t border-white/10">
-              <p className="px-3 mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D6B56C]">Services</p>
+            <div className="pt-4 mt-3 border-t border-black/10">
+              <p className="px-3 mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8A681D]">Services</p>
               {services.map(({ id, title }) => (
-                <button key={id} onClick={() => navigate(id)} className="w-full px-3 py-2.5 text-left text-xs text-white/60">
+                <button key={id} onClick={() => navigate(id)} className="w-full px-3 py-2.5 text-left text-xs text-[#202420]/65">
                   {title}
                 </button>
               ))}

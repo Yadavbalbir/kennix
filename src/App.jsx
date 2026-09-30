@@ -56,6 +56,7 @@ export default function App() {
             openCircleModal={openCircleModal} 
             setSelectedProject={setSelectedProject} 
             theme={theme}
+            initialSection={activePage === 'about' ? 'about' : 'home'}
           />
         );
       case 'community-development':
@@ -96,6 +97,7 @@ export default function App() {
             openCircleModal={openCircleModal} 
             setSelectedProject={setSelectedProject} 
             theme={theme}
+            initialSection="home"
           />
         );
     }

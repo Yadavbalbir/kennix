@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -6,9 +6,10 @@ import {
   HeartHandshake,
   Home,
   MapPin,
-  Play,
   Sparkles,
   Users,
+  Volume2,
+  VolumeX,
 } from 'lucide-react';
 import ThreeCanvasBG from '../components/ThreeCanvasBG';
 
@@ -92,6 +93,8 @@ export default function HomePage({
   initialSection = 'home',
 }) {
   const isDark = theme === 'dark';
+  const heroVideoRef = useRef(null);
+  const [heroMuted, setHeroMuted] = useState(true);
 
   useEffect(() => {
     const target = initialSection === 'about' ? document.getElementById('about') : null;
@@ -104,87 +107,44 @@ export default function HomePage({
     });
   }, [initialSection]);
 
+  const toggleHeroSound = () => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+
+    const nextMuted = !heroMuted;
+    video.muted = nextMuted;
+    setHeroMuted(nextMuted);
+    if (video.paused) video.play();
+  };
+
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <section className="relative min-h-[100svh] flex items-end px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 overflow-hidden">
+      <section className="relative min-h-[100svh] overflow-hidden">
         <div className="absolute inset-0">
           <video
+            ref={heroVideoRef}
             autoPlay
             loop
             muted
             playsInline
             poster="/kennix-hero-story-poster.jpg"
             aria-label="Friends living together in a KENNIX community"
-            className="w-full h-full object-cover saturate-[0.9] contrast-[1.04] brightness-[0.82]"
+            className="w-full h-full object-cover saturate-[0.92] contrast-[1.03] brightness-[0.9]"
           >
             <source src="/kennix-hero-story.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,8,6,0.78)_0%,rgba(3,8,6,0.34)_45%,rgba(3,8,6,0.08)_72%)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-[#030706]/90" />
-          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/50 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/25 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/45 to-transparent" />
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 w-full max-w-7xl mx-auto"
+
+        <button
+          onClick={toggleHeroSound}
+          className="absolute z-10 right-4 sm:right-8 top-24 sm:top-28 rounded-full border border-white/25 bg-black/45 px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md inline-flex items-center gap-2 hover:bg-black/60"
+          aria-label={heroMuted ? 'Play hero video with sound' : 'Mute hero video'}
         >
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-black/25 px-4 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-amber-300 backdrop-blur-md">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
-              </span>
-              A new way to come home
-            </div>
-
-            <h1 className="mt-5 text-5xl sm:text-6xl lg:text-7xl font-serif font-bold leading-[0.95] tracking-[-0.025em] text-white">
-              Your home.
-              <span className="block text-gold-gradient">Your people, closer.</span>
-            </h1>
-
-            <p className="mt-5 max-w-2xl text-sm sm:text-base leading-relaxed text-white/80">
-              Discover thoughtfully planned homes where families, friends and communities can live
-              nearby—together when you want, independent when you need.
-            </p>
-
-            <div className="mt-7 flex flex-col sm:flex-row sm:items-center gap-3">
-              <button
-                onClick={() => setActivePage('projects')}
-                className="group px-6 py-3.5 rounded-full bg-[#D6B56C] text-[#12130F] font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 shadow-[0_12px_36px_rgba(214,181,108,0.18)] hover:bg-[#E4C986]"
-              >
-                Explore Homes
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </button>
-              <button
-                onClick={openCircleModal}
-                className="px-6 py-3.5 rounded-full border border-white/20 bg-white/10 text-white font-bold text-xs uppercase tracking-wider backdrop-blur-md inline-flex items-center justify-center gap-2 hover:bg-white/15"
-              >
-                <Users className="w-4 h-4 text-[#D6B56C]" />
-                Create My Circle
-              </button>
-              <div className="hidden md:flex ml-2 items-center gap-3 text-white/65">
-                <span className="w-10 h-10 rounded-full border border-white/20 bg-black/20 flex items-center justify-center backdrop-blur-md">
-                  <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                </span>
-                <span className="text-[10px] uppercase tracking-[0.18em] leading-relaxed">
-                  KENNIX<br />story preview
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 pt-5 border-t border-white/15 flex items-center justify-between">
-            <p className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-white/65">
-              Connecting People <span className="text-amber-400">•</span> Creating Places Together
-            </p>
-            <div className="hidden sm:flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-white/50">
-              <span>Discover KENNIX</span>
-              <span className="h-8 w-px bg-white/20" />
-              <span className="inline-block h-8 w-[1px] bg-gradient-to-b from-amber-400 to-transparent animate-pulse" />
-            </div>
-          </div>
-        </motion.div>
+          {heroMuted ? <Volume2 className="w-4 h-4 text-[#D6B56C]" /> : <VolumeX className="w-4 h-4 text-[#D6B56C]" />}
+          {heroMuted ? 'Watch with sound' : 'Mute'}
+        </button>
       </section>
 
       <section id="about" className="scroll-mt-16 py-20 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-amber-500/10">

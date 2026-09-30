@@ -113,11 +113,11 @@ export default function HomePage({
             loop
             muted
             playsInline
-            poster="/hero-bg.png"
-            aria-label="A KENNIX community where families and friends live close together"
-            className="w-full h-full object-cover saturate-[0.78] contrast-[1.06] brightness-[0.88]"
+            poster="/kennix-hero-story-poster.jpg"
+            aria-label="Friends living together in a KENNIX community"
+            className="w-full h-full object-cover saturate-[0.9] contrast-[1.04] brightness-[0.82]"
           >
-            <source src="/kennix-community-placeholder.mp4" type="video/mp4" />
+            <source src="/kennix-hero-story.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,8,6,0.78)_0%,rgba(3,8,6,0.34)_45%,rgba(3,8,6,0.08)_72%)]" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-[#030706]/90" />
@@ -253,6 +253,21 @@ export default function HomePage({
                 </div>
               ))}
             </div>
+            <div className="relative mt-8 overflow-hidden rounded-2xl border border-white/15 bg-black shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+              <video
+                controls
+                playsInline
+                preload="metadata"
+                poster="/kennix-circle-story-poster.jpg"
+                className="aspect-video w-full object-cover"
+                aria-label="A multi-generational family shares their KENNIX Circle story"
+              >
+                <source src="/kennix-circle-story.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <p className="relative mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
+              A KENNIX Circle story — families living independently, together
+            </p>
             <blockquote className="relative mt-12 text-3xl sm:text-4xl font-serif italic font-bold text-amber-400">
               “Their Own Home. Their Own Space. Their Own Life.”
             </blockquote>

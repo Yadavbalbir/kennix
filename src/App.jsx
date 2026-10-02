@@ -21,7 +21,10 @@ import V2Page from './pages/V2Page';
 export default function App() {
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
   const isV2 = pathname === '/v2' || pathname.startsWith('/v2/');
-  const [activePage, setActivePage] = useState('home');
+  const [activePage, setActivePage] = useState(() => {
+    if (typeof window === 'undefined') return 'home';
+    return new URLSearchParams(window.location.search).get('portal') === 'login' ? 'login' : 'home';
+  });
   const [theme, setTheme] = useState(() => {
     // Read initial theme from html class
     if (typeof document !== 'undefined' && document.documentElement.classList.contains('light')) {

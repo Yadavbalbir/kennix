@@ -65,6 +65,11 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
     setActivePage(page);
     setServicesOpen(false);
     setMobileMenuOpen(false);
+    if (page === 'login') {
+      window.history.replaceState({}, '', '/?portal=login');
+    } else if (window.location.search) {
+      window.history.replaceState({}, '', '/');
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -144,13 +149,20 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
               )}
             </div>
 
-            <button onClick={() => navigate('login')} className={`${navClass(activePage === 'login')} flex items-center gap-1.5`}>
-              <UserCheck className="w-3.5 h-3.5" />
-              Login
-            </button>
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden items-center gap-3 lg:flex">
+            <button
+              onClick={() => navigate('login')}
+              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.13em] transition-colors ${
+                activePage === 'login'
+                  ? 'border-[#8A681D] bg-[#FFF8E7] text-[#6F5017]'
+                  : 'border-[#173F32]/18 bg-white/40 text-[#31453D] hover:border-[#173F32]/35 hover:bg-white/70'
+              }`}
+            >
+              <UserCheck className="h-3.5 w-3.5" />
+              Client Portal
+            </button>
             <button
               onClick={openCircleModal}
               className="group rounded-full bg-[#D6B56C] px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#12130F] hover:bg-[#E4C986] inline-flex items-center gap-2 shadow-[0_8px_24px_rgba(214,181,108,0.16)]"
@@ -187,12 +199,15 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
               ['about', 'About'],
               ['why-kennix', 'Why KENNIX'],
               ['projects', 'Projects'],
-              ['login', 'Login'],
             ].map(([id, label]) => (
               <button key={id} onClick={() => navigate(id)} className="w-full rounded-lg px-3 py-3 text-left text-sm font-semibold text-[#202420]/80 hover:bg-black/5">
                 {label}
               </button>
             ))}
+            <button onClick={() => navigate('login')} className="mt-2 flex w-full items-center gap-2 rounded-lg border border-[#173F32]/12 bg-white/55 px-3 py-3 text-left text-sm font-semibold text-[#173F32]">
+              <UserCheck className="h-4 w-4" />
+              Client Portal
+            </button>
             <div className="pt-4 mt-3 border-t border-black/10">
               <p className="px-3 mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8A681D]">Services</p>
               {services.map(({ id, title }) => (

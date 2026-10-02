@@ -1,71 +1,128 @@
 import React, { useState } from 'react';
 import { 
-  UserCheck, 
-  KeyRound, 
-  Lock, 
-  Building2, 
-  FileText, 
-  CheckCircle2, 
-  Clock, 
-  Camera, 
-  CreditCard, 
-  Bell,
+  ArrowRight,
+  Camera,
+  CheckCircle2,
+  Eye,
+  EyeOff,
+  FileText,
+  Lock,
   LogOut,
-  Sparkles
+  ShieldCheck,
 } from 'lucide-react';
 
+const DEMO_EMAIL = 'demo@kennix.in';
+const DEMO_PASSWORD = 'kennix2026';
+
 export default function LoginDashboardPage({ openCircleModal }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [email, setEmail] = useState('circle_lead@kennix.com');
-  const [password, setPassword] = useState('••••••••••••');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState('');
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
+    if (email.trim().toLowerCase() !== DEMO_EMAIL || password !== DEMO_PASSWORD) {
+      setLoginError('Those demo credentials do not match. Use the access details shown below.');
+      return;
+    }
+    setLoginError('');
     setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setPassword('');
+    setLoginError('');
   };
 
   return (
     <div className="relative min-h-screen text-slate-100 pt-20">
       {!isLoggedIn ? (
         /* Login Form */
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-md mx-auto">
-          <div className="p-8 rounded-3xl glass-card border border-amber-500/30 space-y-6 shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
-            <div className="text-center space-y-2">
-              <div className="w-12 h-12 rounded-full bg-amber-400/20 border border-amber-400/40 text-amber-400 flex items-center justify-center mx-auto">
-                <Lock className="w-6 h-6" />
+        <section className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-6xl items-center gap-8 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:px-8">
+          <div className="hidden lg:col-span-6 lg:block">
+            <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#D6B56C]">Private client access</p>
+            <h1 className="mt-5 max-w-xl font-serif text-5xl font-bold leading-[1.04] text-white">
+              Your project, visible at every stage.
+            </h1>
+            <p className="mt-6 max-w-lg text-base leading-8 text-slate-400">
+              The KENNIX Client Portal gives Circle members one secure place for construction milestones, quality verification, site photographs and project documents.
+            </p>
+            <div className="mt-10 grid max-w-lg grid-cols-2 gap-3">
+              {['Live milestone progress', 'QA certificates', 'Site photo updates', 'Circle documents'].map((item) => (
+                <div key={item} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-xs text-slate-300">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[28px] border border-[#D8C9A8] bg-[#FAF7F0] p-6 text-[#10271F] shadow-[0_24px_70px_rgba(0,0,0,0.42)] sm:p-8 lg:col-span-6 lg:ml-auto lg:w-full lg:max-w-md">
+            <div className="space-y-2">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#153D30] text-[#E5C77F]">
+                <Lock className="h-5 w-5" />
               </div>
-              <h1 className="text-2xl font-serif font-bold text-white">KENNIX Portal Login</h1>
-              <p className="text-xs text-slate-400">Access your Circle project updates, QA reports & documents.</p>
+              <p className="pt-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#8A681D]">Client Portal</p>
+              <h2 className="font-serif text-3xl font-bold">Sign in to your Circle</h2>
+              <p className="text-sm leading-6 text-[#68736E]">Access is reserved for active KENNIX clients and Circle members.</p>
             </div>
 
-            <form onSubmit={handleLoginSubmit} className="space-y-4 text-xs">
+            <form onSubmit={handleLoginSubmit} className="mt-7 space-y-4 text-xs">
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">Email / Circle ID</label>
-                <input 
-                  type="email" 
+                <label htmlFor="portal-email" className="mb-1.5 block font-semibold text-[#45574F]">Email address</label>
+                <input
+                  id="portal-email"
+                  type="email"
+                  autoComplete="email"
+                  required
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  className="w-full bg-emerald-950/60 border border-emerald-800/60 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-amber-400"
+                  placeholder="you@example.com"
+                  className="w-full rounded-xl border border-[#CEC8BC] bg-white px-4 py-3 text-sm text-[#10271F] outline-none placeholder:text-[#A3AAA6] focus:border-[#A77B26] focus:ring-2 focus:ring-[#D4AF57]/20"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">Password</label>
-                <input 
-                  type="password" 
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  className="w-full bg-emerald-950/60 border border-emerald-800/60 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-amber-400"
-                />
+                <label htmlFor="portal-password" className="mb-1.5 block font-semibold text-[#45574F]">Password</label>
+                <div className="relative">
+                  <input
+                    id="portal-password"
+                    type={showPassword ? 'text' : 'password'}
+                    autoComplete="current-password"
+                    required
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    placeholder="Enter your password"
+                    className="w-full rounded-xl border border-[#CEC8BC] bg-white px-4 py-3 pr-11 text-sm text-[#10271F] outline-none placeholder:text-[#A3AAA6] focus:border-[#A77B26] focus:ring-2 focus:ring-[#D4AF57]/20"
+                  />
+                  <button type="button" onClick={() => setShowPassword((visible) => !visible)} className="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-[#68736E]" aria-label={showPassword ? 'Hide password' : 'Show password'}>
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
               </div>
+
+              {loginError && <p role="alert" className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-[11px] leading-5 text-red-700">{loginError}</p>}
 
               <button
                 type="submit"
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg hover:brightness-110 transition-all"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#153D30] py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-[0_10px_24px_rgba(21,61,48,0.2)] transition-colors hover:bg-[#205442]"
               >
-                SIGN IN TO DASHBOARD
+                Sign in securely <ArrowRight className="h-4 w-4" />
               </button>
             </form>
+
+            <div className="mt-6 rounded-xl border border-[#D8BD7C] bg-[#FFF4D6] p-4">
+              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#8A641C]">
+                <ShieldCheck className="h-4 w-4" /> Demo access
+              </div>
+              <div className="mt-2 space-y-1 font-mono text-[11px] text-[#5C513A]">
+                <p>Email: <strong>{DEMO_EMAIL}</strong></p>
+                <p>Password: <strong>{DEMO_PASSWORD}</strong></p>
+              </div>
+            </div>
           </div>
         </section>
       ) : (
@@ -95,8 +152,9 @@ export default function LoginDashboardPage({ openCircleModal }) {
                 EXPAND CIRCLE
               </button>
               <button 
-                onClick={() => setIsLoggedIn(false)}
+                onClick={handleLogout}
                 className="p-2 rounded-xl glass-card text-slate-400 hover:text-white"
+                aria-label="Sign out of Client Portal"
               >
                 <LogOut className="w-5 h-5" />
               </button>

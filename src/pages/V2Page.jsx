@@ -121,9 +121,14 @@ export default function V2Page({ openCircleModal }) {
               </a>
             ))}
           </nav>
-          <button onClick={openCircleModal} className="hidden rounded-full bg-[#153D30] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_10px_30px_rgba(21,61,48,0.16)] hover:bg-[#205442] sm:inline-flex sm:items-center sm:gap-2">
-            Start a Circle <ArrowRight className="h-4 w-4" />
-          </button>
+          <div className="hidden items-center gap-3 sm:flex">
+            <a href="/?portal=login" className="inline-flex items-center gap-2 rounded-full border border-[#173F32]/15 bg-white/35 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.13em] text-[#31453D] hover:bg-white/70">
+              <ShieldCheck className="h-3.5 w-3.5" /> Client Portal
+            </a>
+            <button onClick={openCircleModal} className="inline-flex items-center gap-2 rounded-full bg-[#153D30] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_10px_30px_rgba(21,61,48,0.16)] hover:bg-[#205442]">
+              Start a Circle <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
           <button onClick={() => setMenuOpen(!menuOpen)} className="flex h-11 w-11 items-center justify-center rounded-full border border-[#173F32]/15 lg:hidden" aria-label="Toggle V2 navigation">
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -133,6 +138,9 @@ export default function V2Page({ openCircleModal }) {
             {['philosophy', 'circle', 'services', 'projects', 'quality'].map((id) => (
               <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)} className="block border-b border-[#173F32]/8 py-3 text-sm font-semibold capitalize">{id}</a>
             ))}
+            <a href="/?portal=login" className="mt-3 flex items-center gap-2 rounded-xl border border-[#173F32]/12 bg-white/50 px-3 py-3 text-sm font-semibold">
+              <ShieldCheck className="h-4 w-4" /> Client Portal
+            </a>
           </div>
         )}
       </header>

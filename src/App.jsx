@@ -16,8 +16,11 @@ import HowItWorksPage from './pages/HowItWorksPage';
 import QualityAssurancePage from './pages/QualityAssurancePage';
 import ProjectsPage from './pages/ProjectsPage';
 import LoginDashboardPage from './pages/LoginDashboardPage';
+import V2Page from './pages/V2Page';
 
 export default function App() {
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const isV2 = pathname === '/v2' || pathname.startsWith('/v2/');
   const [activePage, setActivePage] = useState('home');
   const [theme, setTheme] = useState(() => {
     // Read initial theme from html class
@@ -31,13 +34,21 @@ export default function App() {
 
   useEffect(() => {
     const root = document.documentElement;
+    if (isV2) {
+      root.classList.remove('dark');
+      root.classList.add('light');
+      document.body.style.backgroundColor = '#F4EFE5';
+      document.body.style.color = '#10271F';
+      return;
+    }
+
     // Synchronize html element classes with theme state
     root.classList.remove('dark', 'light');
     root.classList.add(theme);
     // Also update body background for instant visual feedback
     document.body.style.backgroundColor = theme === 'dark' ? '#070A09' : '#F8FAF7';
     document.body.style.color = theme === 'dark' ? '#F1F5F9' : '#0F1715';
-  }, [theme]);
+  }, [theme, isV2]);
 
   const toggleTheme = () => {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
@@ -45,6 +56,15 @@ export default function App() {
 
   const openCircleModal = () => setIsCircleModalOpen(true);
   const closeCircleModal = () => setIsCircleModalOpen(false);
+
+  if (isV2) {
+    return (
+      <>
+        <V2Page openCircleModal={openCircleModal} />
+        <CircleBuilderModal isOpen={isCircleModalOpen} onClose={closeCircleModal} />
+      </>
+    );
+  }
 
   const renderActivePage = () => {
     switch (activePage) {

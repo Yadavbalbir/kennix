@@ -105,8 +105,8 @@ export default function CircleBuilderModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-3xl glass-card rounded-2xl border border-amber-500/30 shadow-[0_25px_60px_rgba(0,0,0,0.95)] overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[radial-gradient(circle_at_center,rgba(8,38,29,0.18),rgba(0,0,0,0.62))] backdrop-blur-[2px] animate-in fade-in duration-200">
+      <div className="relative w-full max-w-3xl glass-card rounded-2xl border border-amber-500/30 shadow-[0_28px_90px_rgba(0,0,0,0.72)] overflow-hidden flex flex-col max-h-[90vh]">
         
         {/* Header */}
         <div className="p-5 border-b border-amber-500/20 bg-emerald-950/40 flex items-center justify-between">

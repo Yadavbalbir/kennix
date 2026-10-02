@@ -6,6 +6,8 @@ import {
   HeartHandshake,
   Home,
   MapPin,
+  Pause,
+  Play,
   Sparkles,
   Users,
   Volume2,
@@ -96,6 +98,7 @@ export default function HomePage({
   const heroVideoRef = useRef(null);
   const circleVideoRef = useRef(null);
   const [heroMuted, setHeroMuted] = useState(true);
+  const [heroPlaying, setHeroPlaying] = useState(true);
 
   useEffect(() => {
     const target = initialSection === 'about' ? document.getElementById('about') : null;
@@ -121,6 +124,17 @@ export default function HomePage({
     video.muted = nextMuted;
     setHeroMuted(nextMuted);
     if (video.paused) video.play();
+  };
+
+  const toggleHeroPlayback = () => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
   };
 
   const handleMediaPlay = (activeMedia) => {
@@ -233,19 +247,34 @@ export default function HomePage({
                   playsInline
                   poster="/kennix-hero-story-poster.jpg"
                   aria-label="Friends living together in a KENNIX community"
-                  onPlay={(event) => handleMediaPlay(event.currentTarget)}
+                  onPlay={(event) => {
+                    setHeroPlaying(true);
+                    handleMediaPlay(event.currentTarget);
+                  }}
+                  onPause={() => setHeroPlaying(false)}
                   className="aspect-video w-full object-cover"
                 >
                   <source src="/kennix-hero-story.mp4" type="video/mp4" />
                 </video>
-                <button
-                  onClick={toggleHeroSound}
-                  className="absolute right-3 top-3 rounded-full border border-white/25 bg-black/55 px-3.5 py-2 text-[9px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md inline-flex items-center gap-2 hover:bg-black/70"
-                  aria-label={heroMuted ? 'Play hero video with sound' : 'Mute hero video'}
-                >
-                  {heroMuted ? <Volume2 className="w-3.5 h-3.5 text-[#D6B56C]" /> : <VolumeX className="w-3.5 h-3.5 text-[#D6B56C]" />}
-                  {heroMuted ? 'Sound on' : 'Mute'}
-                </button>
+                <div className="absolute right-3 top-3 flex items-center gap-2">
+                  <button
+                    onClick={toggleHeroPlayback}
+                    className="h-8 w-8 rounded-full border border-white/25 bg-black/55 text-white backdrop-blur-md flex items-center justify-center hover:bg-black/70"
+                    aria-label={heroPlaying ? 'Pause hero video' : 'Play hero video'}
+                  >
+                    {heroPlaying
+                      ? <Pause className="w-3.5 h-3.5 fill-current" />
+                      : <Play className="w-3.5 h-3.5 fill-current ml-0.5" />}
+                  </button>
+                  <button
+                    onClick={toggleHeroSound}
+                    className="rounded-full border border-white/25 bg-black/55 px-3.5 py-2 text-[9px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md inline-flex items-center gap-2 hover:bg-black/70"
+                    aria-label={heroMuted ? 'Play hero video with sound' : 'Mute hero video'}
+                  >
+                    {heroMuted ? <Volume2 className="w-3.5 h-3.5 text-[#D6B56C]" /> : <VolumeX className="w-3.5 h-3.5 text-[#D6B56C]" />}
+                    {heroMuted ? 'Sound on' : 'Mute'}
+                  </button>
+                </div>
               </div>
               <div className="mt-5 flex items-center justify-between gap-4">
                 <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#715515]">A KENNIX community story</p>

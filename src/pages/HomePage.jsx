@@ -94,6 +94,7 @@ export default function HomePage({
 }) {
   const isDark = theme === 'dark';
   const heroVideoRef = useRef(null);
+  const circleVideoRef = useRef(null);
   const [heroMuted, setHeroMuted] = useState(true);
 
   useEffect(() => {
@@ -112,16 +113,41 @@ export default function HomePage({
     if (!video) return;
 
     const nextMuted = !heroMuted;
+    if (!nextMuted) {
+      document.querySelectorAll('video, audio').forEach((media) => {
+        if (media !== video) media.pause();
+      });
+    }
     video.muted = nextMuted;
     setHeroMuted(nextMuted);
     if (video.paused) video.play();
   };
 
+  const handleMediaPlay = (activeMedia) => {
+    document.querySelectorAll('video, audio').forEach((media) => {
+      if (media !== activeMedia && !media.paused) media.pause();
+    });
+
+    if (activeMedia !== heroVideoRef.current && heroVideoRef.current) {
+      heroVideoRef.current.muted = true;
+      setHeroMuted(true);
+    }
+  };
+
   return (
     <div className="relative min-h-screen overflow-hidden">
       <section className="relative min-h-[720px] flex items-center overflow-hidden bg-[#F7F4EC] px-4 sm:px-6 lg:px-8 pt-28 pb-16">
-        <div className="absolute -left-32 top-24 h-80 w-80 rounded-full bg-[#D6B56C]/10 blur-3xl" />
-        <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-[#173F32]/8 blur-3xl" />
+        <motion.div
+          className="absolute -left-32 top-24 h-80 w-80 rounded-full bg-[#D6B56C]/15 blur-3xl"
+          animate={{ x: [0, 60, 10], y: [0, 25, -10], scale: [1, 1.16, 1] }}
+          transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-[#173F32]/12 blur-3xl"
+          animate={{ x: [0, -45, 0], y: [0, -35, 0], scale: [1, 1.12, 1] }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <div className="absolute inset-0 opacity-[0.16] hero-grid-pattern" />
 
         <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
           <motion.div
@@ -130,10 +156,17 @@ export default function HomePage({
             transition={{ duration: 0.7 }}
             className="lg:col-span-5"
           >
-            <div className="inline-flex items-center gap-3 rounded-full border border-[#173F32]/15 bg-white/65 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#715515]">
-              <span className="h-2 w-2 rounded-full bg-[#D6B56C]" />
+            <motion.div
+              className="inline-flex items-center gap-3 rounded-full border border-[#173F32]/15 bg-white/70 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#715515] shadow-[0_8px_28px_rgba(23,63,50,0.07)] backdrop-blur-sm"
+              whileHover={{ y: -2, boxShadow: '0 12px 32px rgba(23,63,50,0.12)' }}
+            >
+              <motion.span
+                className="h-2 w-2 rounded-full bg-[#D6B56C]"
+                animate={{ scale: [1, 1.55, 1], opacity: [1, 0.65, 1] }}
+                transition={{ duration: 2.2, repeat: Infinity }}
+              />
               Connecting people, creating places
-            </div>
+            </motion.div>
 
             <h1 className="mt-7 text-5xl sm:text-6xl lg:text-7xl font-serif font-bold leading-[0.94] tracking-[-0.03em] text-[#10251D]">
               Your home.
@@ -146,20 +179,25 @@ export default function HomePage({
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <button
+              <motion.button
                 onClick={() => setActivePage('projects')}
-                className="group rounded-full bg-[#173F32] px-6 py-3.5 text-xs font-bold uppercase tracking-[0.12em] text-white inline-flex items-center justify-center gap-2 shadow-[0_12px_30px_rgba(23,63,50,0.18)] hover:bg-[#205442]"
+                whileHover={{ y: -3, scale: 1.015 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative overflow-hidden rounded-full bg-[#173F32] px-6 py-3.5 text-xs font-bold uppercase tracking-[0.12em] text-white inline-flex items-center justify-center gap-2 shadow-[0_12px_30px_rgba(23,63,50,0.18)] hover:bg-[#205442]"
               >
+                <span className="absolute inset-y-0 -left-16 w-12 rotate-12 bg-white/20 blur-md transition-transform duration-700 group-hover:translate-x-64" />
                 Explore Homes
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 onClick={openCircleModal}
+                whileHover={{ y: -3, scale: 1.015 }}
+                whileTap={{ scale: 0.98 }}
                 className="rounded-full border border-[#173F32]/20 bg-white/60 px-6 py-3.5 text-xs font-bold uppercase tracking-[0.12em] text-[#173F32] inline-flex items-center justify-center gap-2 hover:bg-white"
               >
                 <Users className="w-4 h-4 text-[#A27B26]" />
                 Create My Circle
-              </button>
+              </motion.button>
             </div>
 
             <div className="mt-9 pt-5 border-t border-[#173F32]/12 flex flex-wrap gap-x-7 gap-y-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#52645D]">
@@ -175,8 +213,17 @@ export default function HomePage({
             transition={{ duration: 0.7, delay: 0.1 }}
             className="lg:col-span-7"
           >
-            <div className="relative">
-              <div className="absolute -inset-3 sm:-inset-4 rounded-[2rem] border border-[#D6B56C]/30 bg-[#D6B56C]/8 rotate-1" />
+            <motion.div
+              className="relative"
+              animate={{ y: [0, -7, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+              whileHover={{ scale: 1.012, rotate: -0.25 }}
+            >
+              <motion.div
+                className="absolute -inset-3 sm:-inset-4 rounded-[2rem] border border-[#D6B56C]/35 bg-gradient-to-br from-[#D6B56C]/15 via-transparent to-[#173F32]/10 rotate-1"
+                animate={{ rotate: [1, 0.3, 1], scale: [1, 1.012, 1] }}
+                transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+              />
               <div className="relative overflow-hidden rounded-[1.5rem] border border-black/10 bg-black shadow-[0_28px_70px_rgba(18,32,26,0.25)]">
                 <video
                   ref={heroVideoRef}
@@ -186,6 +233,7 @@ export default function HomePage({
                   playsInline
                   poster="/kennix-hero-story-poster.jpg"
                   aria-label="Friends living together in a KENNIX community"
+                  onPlay={(event) => handleMediaPlay(event.currentTarget)}
                   className="aspect-video w-full object-cover"
                 >
                   <source src="/kennix-hero-story.mp4" type="video/mp4" />
@@ -203,7 +251,7 @@ export default function HomePage({
                 <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#715515]">A KENNIX community story</p>
                 <p className="text-xs text-[#52645D]">30 sec film</p>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -239,14 +287,22 @@ export default function HomePage({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {audiences.map(({ title, description, icon: Icon }) => (
-              <div key={title} className="p-5 rounded-2xl glass-card glass-card-hover">
+            {audiences.map(({ title, description, icon: Icon }, index) => (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                whileHover={{ y: -8, scale: 1.015 }}
+                className="group p-5 rounded-2xl glass-card"
+              >
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center">
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" />
                 </div>
                 <h2 className="mt-4 text-lg font-serif font-bold text-theme-heading">{title}</h2>
                 <p className="mt-2 text-xs leading-relaxed text-theme-muted">{description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>
@@ -276,10 +332,12 @@ export default function HomePage({
             </div>
             <div className="relative mt-8 overflow-hidden rounded-2xl border border-white/15 bg-black shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
               <video
+                ref={circleVideoRef}
                 controls
                 playsInline
                 preload="metadata"
                 poster="/kennix-circle-story-poster.jpg"
+                onPlay={(event) => handleMediaPlay(event.currentTarget)}
                 className="aspect-video w-full object-cover"
                 aria-label="A multi-generational family shares their KENNIX Circle story"
               >
@@ -330,7 +388,7 @@ export default function HomePage({
               className="rounded-2xl glass-card overflow-hidden flex flex-col"
             >
               <div className="relative h-44 overflow-hidden">
-                <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
+                <img src={project.image} alt={project.name} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
                 <span className="absolute top-3 left-3 bg-black/80 text-emerald-400 text-[10px] font-bold px-2.5 py-1 rounded-md">
                   {project.stage}
                 </span>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import {
   ArrowRight,
   Building2,
@@ -50,6 +51,8 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const progressScale = useSpring(scrollYProgress, { stiffness: 130, damping: 28, mass: 0.2 });
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 24);
@@ -80,7 +83,7 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
+        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-20' : 'h-24'}`}>
           <button onClick={() => navigate('home')} aria-label="KENNIX Home" className="shrink-0">
             <KennixLogo size="sm" />
           </button>
@@ -161,7 +164,7 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
           <div className="flex lg:hidden items-center gap-2">
             <button
               onClick={openCircleModal}
-              className="rounded-full bg-[#D6B56C] px-3.5 py-2 text-[10px] font-bold uppercase tracking-wider text-[#12130F]"
+              className="hidden sm:block rounded-full bg-[#D6B56C] px-3.5 py-2 text-[10px] font-bold uppercase tracking-wider text-[#12130F]"
             >
               Create Circle
             </button>
@@ -201,6 +204,10 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
           </div>
         </div>
       )}
+      <motion.div
+        className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-gradient-to-r from-[#173F32] via-[#D6B56C] to-[#A27B26]"
+        style={{ scaleX: progressScale }}
+      />
     </header>
   );
 }

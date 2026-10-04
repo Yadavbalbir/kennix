@@ -91,9 +91,10 @@ export default function V2Page({ openCircleModal }) {
               ['circle', 'The Circle'],
               ['services', 'Expertise'],
               ['projects', 'Projects'],
+              ['packages', 'Packages'],
               ['quality', 'Quality'],
             ].map(([id, label]) => (
-              <a key={id} href={`#${id}`} className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#31453D] hover:text-[#9A7427]">
+              <a key={id} href={id === 'packages' ? '/?page=packages' : `#${id}`} className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#31453D] hover:text-[#9A7427]">
                 {label}
               </a>
             ))}
@@ -112,8 +113,8 @@ export default function V2Page({ openCircleModal }) {
         </div>
         {menuOpen && (
           <div className="border-t border-[#173F32]/10 bg-[#F4EFE5] px-6 py-5 lg:hidden">
-            {['philosophy', 'circle', 'services', 'projects', 'quality'].map((id) => (
-              <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)} className="block border-b border-[#173F32]/8 py-3 text-sm font-semibold capitalize">{id}</a>
+            {['philosophy', 'circle', 'services', 'projects', 'packages', 'quality'].map((id) => (
+              <a key={id} href={id === 'packages' ? '/?page=packages' : `#${id}`} onClick={() => setMenuOpen(false)} className="block border-b border-[#173F32]/8 py-3 text-sm font-semibold capitalize">{id}</a>
             ))}
             <a href="/?portal=login" className="mt-3 flex items-center gap-2 rounded-xl border border-[#173F32]/12 bg-white/50 px-3 py-3 text-sm font-semibold">
               <ShieldCheck className="h-4 w-4" /> Client Portal

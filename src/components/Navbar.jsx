@@ -67,6 +67,8 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
     setMobileMenuOpen(false);
     if (page === 'login') {
       window.history.replaceState({}, '', '/?portal=login');
+    } else if (page === 'packages') {
+      window.history.replaceState({}, '', '/?page=packages');
     } else if (window.location.search) {
       window.history.replaceState({}, '', '/');
     }
@@ -102,6 +104,9 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
             </button>
             <button onClick={() => navigate('projects')} className={navClass(activePage === 'projects')}>
               Projects
+            </button>
+            <button onClick={() => navigate('packages')} className={navClass(activePage === 'packages')}>
+              Packages
             </button>
 
             <div
@@ -199,6 +204,7 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
               ['about', 'About'],
               ['why-kennix', 'Why KENNIX'],
               ['projects', 'Projects'],
+              ['packages', 'Packages'],
             ].map(([id, label]) => (
               <button key={id} onClick={() => navigate(id)} className="w-full rounded-lg px-3 py-3 text-left text-sm font-semibold text-[#202420]/80 hover:bg-black/5">
                 {label}

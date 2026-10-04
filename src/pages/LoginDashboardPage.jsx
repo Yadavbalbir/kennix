@@ -137,10 +137,10 @@ export default function LoginDashboardPage({ openCircleModal }) {
                 <span>Circle Status: Active & On Schedule</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-serif font-bold text-white">
-                Welcome, Sharma Family Circle
+                Welcome, Demo Family Circle
               </h1>
               <p className="text-xs text-slate-400 mt-0.5">
-                KENNIX Woodlands Estate • Project ID: #KNX-WDL-2026-08 • 6 Homes Group
+                Demonstration Project • Project ID: #KNX-DEMO-2026 • 6 Homes Group
               </p>
             </div>
 

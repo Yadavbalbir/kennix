@@ -14,6 +14,7 @@ import {
   VolumeX,
 } from 'lucide-react';
 import ThreeCanvasBG from '../components/ThreeCanvasBG';
+import { featuredContractorProjects } from '../data/contractorProjects';
 
 const audiences = [
   { title: 'Individuals & Families', description: 'Find the right home for yourself or your family.', icon: Home },
@@ -27,57 +28,6 @@ const circleBenefits = [
   'Children growing up with cousins.',
   'Friends becoming neighbours.',
   'Communities celebrating together.',
-];
-
-const featuredProjects = [
-  {
-    id: 'kennix-woodlands',
-    name: 'KENNIX Woodlands Estate',
-    location: 'South Suburbs, Green Valley',
-    type: 'Villas & Low-Rise Apartments',
-    price: '₹85 L onwards',
-    stage: 'Under Construction (Stage 3)',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
-    description: 'A serene residential enclave designed for multi-generational families and friend circles.',
-    config: '3 & 4 BHK Luxury Residences',
-    amenities: ['Central Community Park', 'Senior Wellness Hub', 'Clubhouse & Cafe', 'Solar Powered'],
-  },
-  {
-    id: 'kennix-aurora',
-    name: 'KENNIX Aurora Heights',
-    location: 'Tech Corridor Sector 12',
-    type: 'Smart Community Apartments',
-    price: '₹68 L onwards',
-    stage: 'Architectural & Pre-Launch',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
-    description: 'Modern connected living for professional groups and growing families.',
-    config: '2 & 3 BHK Smart Homes',
-    amenities: ['Co-working Pods', 'EV Stations', 'Infinity Pool', '24/7 Smart Security'],
-  },
-  {
-    id: 'kennix-heritage',
-    name: 'KENNIX Heritage Enclave',
-    location: 'Old Town Cultural Hub',
-    type: 'Custom Land Plots & Built Homes',
-    price: '₹1.1 Cr onwards',
-    stage: 'Ready for Circle Booking',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-    description: 'Adjoining plots and bespoke homes centred around a shared cultural space.',
-    config: 'Plots & Custom Villas',
-    amenities: ['Amphitheatre', 'Cultural Center', 'Rainwater Harvesting', 'Gated Perimeter'],
-  },
-  {
-    id: 'kennix-serenity',
-    name: 'KENNIX Serenity Greens',
-    location: 'Hillside Sanctuary',
-    type: 'Senior & Family Living',
-    price: '₹92 L onwards',
-    stage: 'Material Check & Foundation',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
-    description: 'Accessible homes and peaceful shared spaces for senior and family living.',
-    config: '2 & 3 BHK Accessible Homes',
-    amenities: ['24/7 Medical Care Unit', 'Hydrotherapy Pool', 'Organic Farm', 'Library Lounge'],
-  },
 ];
 
 const reveal = {
@@ -396,29 +346,32 @@ export default function HomePage({
       <section className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-amber-500/10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
-            <p className="text-xs font-bold text-amber-500 tracking-widest uppercase">Featured Opportunities</p>
+            <p className="text-xs font-bold text-amber-500 tracking-widest uppercase">Built Experience</p>
             <h2 className="mt-3 text-4xl sm:text-5xl font-serif font-bold text-theme-heading">
-              Explore KENNIX Projects
+              Contractor-Built Projects
             </h2>
+            <p className="mt-3 max-w-2xl text-sm text-theme-body">
+              Selected residential projects completed by the contractor associated with KENNIX.
+            </p>
           </div>
           <button
             onClick={() => setActivePage('projects')}
             className="text-xs font-bold uppercase tracking-wider text-amber-500 inline-flex items-center gap-2"
           >
-            View All Projects <ArrowRight className="w-4 h-4" />
+            View Full Portfolio <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {featuredProjects.map((project) => (
+          {featuredContractorProjects.map((project) => (
             <motion.article
               key={project.id}
               whileHover={{ y: -5 }}
               className="rounded-2xl glass-card overflow-hidden flex flex-col"
             >
               <div className="relative h-44 overflow-hidden">
-                <img src={project.image} alt={project.name} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
-                <span className="absolute top-3 left-3 bg-black/80 text-emerald-400 text-[10px] font-bold px-2.5 py-1 rounded-md">
+                <img src={project.image} alt={project.name} style={{ objectPosition: project.imagePosition }} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
+                <span className="absolute top-3 left-3 bg-black/80 text-[#E5C77F] text-[10px] font-bold px-2.5 py-1 rounded-md">
                   {project.stage}
                 </span>
               </div>
@@ -430,8 +383,8 @@ export default function HomePage({
                 <p className="mt-1 text-xs text-theme-body flex items-center gap-1.5">
                   <Home className="w-3.5 h-3.5 text-emerald-500" /> {project.type}
                 </p>
-                <p className="mt-4 pt-4 border-t border-amber-500/15 text-sm font-bold text-amber-500">
-                  {project.price}
+                <p className="mt-4 pt-4 border-t border-amber-500/15 text-[10px] font-bold uppercase tracking-[0.16em] text-amber-500">
+                  {project.relationship}
                 </p>
               </div>
               <button

@@ -16,6 +16,7 @@ import HowItWorksPage from './pages/HowItWorksPage';
 import QualityAssurancePage from './pages/QualityAssurancePage';
 import ProjectsPage from './pages/ProjectsPage';
 import LoginDashboardPage from './pages/LoginDashboardPage';
+import PackagesPage from './pages/PackagesPage';
 import V2Page from './pages/V2Page';
 
 export default function App() {
@@ -23,7 +24,10 @@ export default function App() {
   const isV2 = pathname === '/v2' || pathname.startsWith('/v2/');
   const [activePage, setActivePage] = useState(() => {
     if (typeof window === 'undefined') return 'home';
-    return new URLSearchParams(window.location.search).get('portal') === 'login' ? 'login' : 'home';
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('portal') === 'login') return 'login';
+    if (params.get('page') === 'packages') return 'packages';
+    return 'home';
   });
   const [theme, setTheme] = useState(() => {
     // Read initial theme from html class
@@ -111,6 +115,8 @@ export default function App() {
             openCircleModal={openCircleModal} 
           />
         );
+      case 'packages':
+        return <PackagesPage openCircleModal={openCircleModal} />;
       case 'login':
         return <LoginDashboardPage openCircleModal={openCircleModal} />;
       default:

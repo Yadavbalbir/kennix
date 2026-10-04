@@ -46,6 +46,7 @@ export default function Footer({ setActivePage, openCircleModal, theme }) {
             <li><button onClick={() => setActivePage('about')} className={`hover:${isDark ? 'text-white' : 'text-slate-900'} transition-colors cursor-pointer`}>About Us</button></li>
             <li><button onClick={() => setActivePage('why-kennix')} className={`hover:${isDark ? 'text-white' : 'text-slate-900'} transition-colors cursor-pointer`}>Why KENNIX</button></li>
             <li><button onClick={() => setActivePage('projects')} className={`hover:${isDark ? 'text-white' : 'text-slate-900'} transition-colors cursor-pointer`}>Projects Catalog</button></li>
+            <li><button onClick={() => setActivePage('packages')} className={`hover:${isDark ? 'text-white' : 'text-slate-900'} transition-colors cursor-pointer`}>Construction Packages</button></li>
           </ul>
         </div>
 

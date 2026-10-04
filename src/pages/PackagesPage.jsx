@@ -1,28 +1,60 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Building2, FileText, Home, Layers3, Sparkles } from 'lucide-react';
+import { ArrowRight, Building2, Check, FileText, Home, Layers3, Sparkles } from 'lucide-react';
 
 const packages = [
   {
-    name: 'Basic Package',
+    name: 'Basic',
     price: '₹1,800',
     icon: Home,
+    cardClass: 'border-[#D8CDB9] bg-[#FCFBF7] text-[#10271F]',
+    iconClass: 'bg-[#E5EDE8] text-[#315D4D]',
+    numberClass: 'text-[#153D30]/[0.06]',
+    labelClass: 'text-[#87651F]',
+    mutedClass: 'text-[#68736E]',
+    priceClass: 'border-[#D9E2DC] bg-[#EDF3EF]',
+    featureClass: 'border-[#173F32]/10 text-[#4D5E57]',
+    buttonClass: 'bg-[#153D30] text-white hover:bg-[#205442]',
   },
   {
-    name: 'Standard Package',
+    name: 'Standard',
     price: '₹2,000',
     icon: Building2,
     featured: true,
+    cardClass: 'border-[#315D4D] bg-[#153D30] text-white',
+    iconClass: 'bg-white/10 text-[#E5C77F]',
+    numberClass: 'text-white/[0.05]',
+    labelClass: 'text-[#E5C77F]',
+    mutedClass: 'text-white/55',
+    priceClass: 'border-white/10 bg-white/[0.06]',
+    featureClass: 'border-white/10 text-white/65',
+    buttonClass: 'bg-[#D4AF57] text-[#10271F] hover:bg-[#E4C986]',
   },
   {
-    name: 'Luxury Package',
+    name: 'Luxury',
     price: '₹2,200',
     icon: Layers3,
+    cardClass: 'border-[#D4BD86] bg-[#FFF9EA] text-[#10271F]',
+    iconClass: 'bg-[#F3E5BC] text-[#8A641C]',
+    numberClass: 'text-[#A77B26]/[0.07]',
+    labelClass: 'text-[#8A641C]',
+    mutedClass: 'text-[#746448]',
+    priceClass: 'border-[#E4CD95] bg-[#F8E9C3]',
+    featureClass: 'border-[#A77B26]/15 text-[#655A44]',
+    buttonClass: 'bg-[#A77B26] text-white hover:bg-[#8F681F]',
   },
   {
-    name: 'Ultra Luxury Package',
+    name: 'Ultra Luxury',
     price: '₹2,500',
     icon: Sparkles,
+    cardClass: 'border-[#172B23] bg-[#101E19] text-white',
+    iconClass: 'bg-[#D4AF57]/15 text-[#E5C77F]',
+    numberClass: 'text-white/[0.05]',
+    labelClass: 'text-[#E5C77F]',
+    mutedClass: 'text-white/50',
+    priceClass: 'border-[#D4AF57]/20 bg-[#D4AF57]/10',
+    featureClass: 'border-white/10 text-white/60',
+    buttonClass: 'bg-[#D4AF57] text-[#10271F] hover:bg-[#E4C986]',
   },
 ];
 
@@ -54,49 +86,62 @@ export default function PackagesPage({ openCircleModal }) {
         </motion.div>
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {packages.map(({ name, price, icon: Icon, featured }, index) => (
+          {packages.map((pkg, index) => {
+            const Icon = pkg.icon;
+            return (
             <motion.article
-              key={name}
+              key={pkg.name}
               initial={{ opacity: 0, y: 26 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: index * 0.08 }}
               whileHover={{ y: -6 }}
-              className={`relative flex min-h-[350px] flex-col overflow-hidden rounded-[28px] border p-7 shadow-[0_20px_55px_rgba(23,63,50,0.08)] ${
-                featured
-                  ? 'border-[#315D4D] bg-[#153D30] text-white'
-                  : 'border-[#D8CDB9] bg-white/75 text-[#10271F]'
-              }`}
+              className={`group relative flex min-h-[490px] flex-col overflow-hidden rounded-[30px] border p-6 shadow-[0_20px_55px_rgba(23,63,50,0.09)] sm:p-7 ${pkg.cardClass}`}
             >
-              {featured && (
+              <div className={`absolute inset-x-0 top-0 h-1 ${index === 0 ? 'bg-[#628474]' : index === 1 ? 'bg-[#D4AF57]' : index === 2 ? 'bg-[#B88932]' : 'bg-gradient-to-r from-[#D4AF57] via-[#F0DDA5] to-[#D4AF57]'}`} />
+              <span className={`pointer-events-none absolute -right-2 top-8 font-serif text-[7rem] font-bold leading-none ${pkg.numberClass}`}>
+                0{index + 1}
+              </span>
+              {pkg.featured && (
                 <span className="absolute right-5 top-5 rounded-full border border-[#D4AF57]/40 bg-[#D4AF57]/15 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.16em] text-[#E5C77F]">
                   Popular
                 </span>
               )}
-              <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${featured ? 'bg-white/10 text-[#E5C77F]' : 'bg-[#E5EDE8] text-[#315D4D]'}`}>
+              <div className={`relative flex h-12 w-12 items-center justify-center rounded-2xl ${pkg.iconClass}`}>
                 <Icon className="h-5 w-5" strokeWidth={1.6} />
               </div>
-              <p className={`mt-10 text-[10px] font-bold uppercase tracking-[0.2em] ${featured ? 'text-[#E5C77F]' : 'text-[#87651F]'}`}>
-                Package {String(index + 1).padStart(2, '0')}
+              <p className={`relative mt-8 text-[10px] font-bold uppercase tracking-[0.2em] ${pkg.labelClass}`}>
+                Construction package
               </p>
-              <h2 className="mt-3 min-h-[64px] font-serif text-3xl font-bold leading-tight">{name}</h2>
-              <div className={`mt-7 border-t pt-6 ${featured ? 'border-white/15' : 'border-[#173F32]/10'}`}>
-                <p className="font-serif text-4xl font-bold">{price}</p>
-                <p className={`mt-2 text-xs font-semibold uppercase tracking-[0.14em] ${featured ? 'text-white/55' : 'text-[#68736E]'}`}>
+              <h2 className="relative mt-2 min-h-[66px] font-serif text-3xl font-bold leading-none">
+                {pkg.name}
+                <span className={`mt-2 block font-sans text-[10px] font-bold uppercase tracking-[0.2em] ${pkg.mutedClass}`}>Package</span>
+              </h2>
+              <div className={`relative mt-5 rounded-2xl border p-5 ${pkg.priceClass}`}>
+                <p className={`text-[9px] font-bold uppercase tracking-[0.18em] ${pkg.mutedClass}`}>Package rate</p>
+                <p className="mt-2 font-serif text-4xl font-bold">{pkg.price}</p>
+                <p className={`mt-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${pkg.mutedClass}`}>
                   Per Sq. Ft. + GST
                 </p>
               </div>
+              <div className="relative mt-5 space-y-3">
+                {['Detailed specifications on request', 'Final quote after project evaluation'].map((item) => (
+                  <div key={item} className={`flex items-start gap-2.5 border-b pb-3 text-[11px] leading-5 last:border-b-0 ${pkg.featureClass}`}>
+                    <span className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${index === 1 || index === 3 ? 'bg-[#D4AF57]/15 text-[#E5C77F]' : 'bg-[#315D4D]/10 text-[#315D4D]'}`}>
+                      <Check className="h-2.5 w-2.5" strokeWidth={2.5} />
+                    </span>
+                    {item}
+                  </div>
+                ))}
+              </div>
               <button
                 onClick={openCircleModal}
-                className={`mt-auto flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-[10px] font-bold uppercase tracking-[0.14em] transition-colors ${
-                  featured
-                    ? 'bg-[#D4AF57] text-[#10271F] hover:bg-[#E4C986]'
-                    : 'bg-[#153D30] text-white hover:bg-[#205442]'
-                }`}
+                className={`relative mt-auto flex w-full items-center justify-between rounded-full px-5 py-3 text-[9px] font-bold uppercase tracking-[0.13em] transition-all group-hover:px-6 ${pkg.buttonClass}`}
               >
                 Request specifications <ArrowRight className="h-3.5 w-3.5" />
               </button>
             </motion.article>
-          ))}
+            );
+          })}
         </div>
 
         <motion.div

@@ -1,15 +1,8 @@
 import React from 'react';
 import { 
-  X, 
-  MapPin, 
-  Home, 
-  CheckCircle2, 
-  Building2, 
-  Layers, 
-  PhoneCall, 
+  X,
+  MapPin,
   Sparkles,
-  ArrowRight,
-  ShieldAlert
 } from 'lucide-react';
 
 export default function ProjectDetailModal({ project, isOpen, onClose, openCircleModal }) {
@@ -24,6 +17,7 @@ export default function ProjectDetailModal({ project, isOpen, onClose, openCircl
           <img 
             src={project.image} 
             alt={project.name} 
+            style={{ objectPosition: project.imagePosition }}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#070A09] via-[#070A09]/40 to-transparent" />
@@ -32,6 +26,7 @@ export default function ProjectDetailModal({ project, isOpen, onClose, openCircl
           <button 
             onClick={onClose}
             className="absolute top-4 right-4 p-2 rounded-full bg-black/60 text-white hover:bg-amber-400 hover:text-slate-950 transition-colors z-10"
+            aria-label="Close project details"
           >
             <X className="w-5 h-5" />
           </button>
@@ -43,7 +38,7 @@ export default function ProjectDetailModal({ project, isOpen, onClose, openCircl
                 {project.type}
               </span>
               <span className="bg-emerald-500/80 text-white text-xs font-semibold px-3 py-1 rounded-full border border-emerald-400/40">
-                Stage: {project.stage}
+                {project.stage}
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white tracking-wide">
@@ -59,26 +54,22 @@ export default function ProjectDetailModal({ project, isOpen, onClose, openCircl
         {/* Modal Body */}
         <div className="p-6 overflow-y-auto space-y-6 text-slate-200 flex-1">
           
-          {/* Stats Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl glass-emerald border border-emerald-500/30">
             <div>
-              <span className="text-[11px] text-slate-400 uppercase font-mono block">Starting Price</span>
-              <span className="text-xl font-bold font-serif text-amber-300">{project.price}</span>
+              <span className="text-[11px] text-slate-400 uppercase font-mono block">Status</span>
+              <span className="text-xl font-bold font-serif text-amber-300">{project.stage}</span>
             </div>
             <div>
-              <span className="text-[11px] text-slate-400 uppercase font-mono block">Property Configurations</span>
-              <span className="text-sm font-semibold text-white">{project.config || '2, 3 & 4 BHK Luxury'}</span>
+              <span className="text-[11px] text-slate-400 uppercase font-mono block">Project Type</span>
+              <span className="text-sm font-semibold text-white">{project.type}</span>
             </div>
             <div>
-              <span className="text-[11px] text-slate-400 uppercase font-mono block">Circle Eligibility</span>
-              <span className="text-sm font-semibold text-emerald-400">Available for Circles</span>
+              <span className="text-[11px] text-slate-400 uppercase font-mono block">Scope</span>
+              <span className="text-sm font-semibold text-emerald-400">{project.scope}</span>
             </div>
             <div>
-              <span className="text-[11px] text-slate-400 uppercase font-mono block">Quality Assurance</span>
-              <span className="text-sm font-semibold text-amber-300 flex items-center space-x-1">
-                <CheckCircle2 className="w-4 h-4 text-amber-400" />
-                <span>KENNIX Verified</span>
-              </span>
+              <span className="text-[11px] text-slate-400 uppercase font-mono block">Experience</span>
+              <span className="text-sm font-semibold text-amber-300">{project.relationship}</span>
             </div>
           </div>
 
@@ -90,43 +81,10 @@ export default function ProjectDetailModal({ project, isOpen, onClose, openCircl
             </p>
           </div>
 
-          {/* Key Amenities */}
-          <div>
-            <h4 className="text-sm font-bold text-amber-300 uppercase tracking-widest mb-3">
-              Community Amenities & Features
-            </h4>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
-              {(project.amenities || [
-                'Community Clubhouse & Hall',
-                'Senior Citizens Green Lawn',
-                'Children Play Zone & Sandpit',
-                '24/7 Multi-Tiered Security',
-                'EV Charging Infrastructure',
-                'Solar Powered Common Lighting'
-              ]).map((item, idx) => (
-                <div key={idx} className="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-900/50 flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span className="text-slate-200">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Quality Stage Progress */}
-          <div className="p-4 rounded-xl glass-card border border-amber-500/20 space-y-3">
-            <h4 className="text-xs uppercase font-bold text-amber-400 tracking-wider flex items-center justify-between">
-              <span>Development & QA Milestone Status</span>
-              <span className="text-emerald-400 font-mono">Stage 4 of 6</span>
-            </h4>
-
-            <div className="grid grid-cols-6 gap-1 pt-2">
-              {['Land & Feasibility', 'Arch & Design', 'Structure & Civil', 'MEP & Plumbing', 'Finishing & QA', 'Handover'].map((st, i) => (
-                <div key={i} className="text-center">
-                  <div className={`h-2 rounded-full mb-1 ${i <= 3 ? 'bg-amber-400 shadow-[0_0_8px_rgba(212,175,55,0.8)]' : 'bg-slate-800'}`} />
-                  <span className="text-[10px] text-slate-400 block truncate">{st}</span>
-                </div>
-              ))}
-            </div>
+          <div className="rounded-xl border border-amber-500/20 bg-amber-500/[0.06] p-4">
+            <p className="text-xs leading-6 text-slate-300">
+              This project is shown as evidence of prior contractor experience. It is not presented as a current KENNIX development or an active sales listing.
+            </p>
           </div>
 
         </div>
@@ -149,7 +107,7 @@ export default function ProjectDetailModal({ project, isOpen, onClose, openCircl
               className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold text-xs tracking-wider uppercase shadow-lg hover:brightness-110 transition-all flex items-center justify-center space-x-1.5"
             >
               <Sparkles className="w-4 h-4" />
-              <span>RESERVE WITH MY CIRCLE</span>
+              <span>DISCUSS A NEW PROJECT</span>
             </button>
           </div>
         </div>

@@ -21,6 +21,7 @@ import {
   X,
 } from 'lucide-react';
 import KennixLogo from '../components/KennixLogo';
+import { contractorProjects } from '../data/contractorProjects';
 
 const services = [
   { number: '01', title: 'Community Development', text: 'Places planned around relationships, shared needs and belonging.', icon: Users, featured: true },
@@ -28,30 +29,6 @@ const services = [
   { number: '03', title: 'Commercial Construction', text: 'Purpose-built spaces with function, flow and long-term value.', icon: Building2 },
   { number: '04', title: 'Architecture & Engineering', text: 'Design ambition resolved with structural clarity.', icon: Compass },
   { number: '05', title: 'Interiors & Smart Homes', text: 'Considered interiors and technology that quietly works.', icon: Sparkles },
-];
-
-const projects = [
-  {
-    name: 'Woodlands Estate',
-    location: 'Green Valley',
-    type: 'Villas & low-rise residences',
-    price: '₹85 L onwards',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=85',
-  },
-  {
-    name: 'Aurora Heights',
-    location: 'Tech Corridor',
-    type: 'Smart community apartments',
-    price: '₹68 L onwards',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1400&q=85',
-  },
-  {
-    name: 'Heritage Enclave',
-    location: 'Old Town',
-    type: 'Custom plots & villas',
-    price: '₹1.1 Cr onwards',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85',
-  },
 ];
 
 const steps = [
@@ -317,23 +294,24 @@ export default function V2Page({ openCircleModal }) {
           <div className="mx-auto max-w-[1440px]">
             <motion.div {...reveal} className="flex items-end justify-between gap-6">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#D4AF57]">Selected opportunities</p>
-                <h2 className="mt-5 font-serif text-5xl font-bold sm:text-7xl">Places with purpose.</h2>
+                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#D4AF57]">Built experience</p>
+                <h2 className="mt-5 font-serif text-5xl font-bold sm:text-7xl">Work that stands.</h2>
+                <p className="mt-5 max-w-xl text-sm leading-7 text-white/55">Selected residential projects completed by the contractor associated with KENNIX.</p>
               </div>
               <ArrowRight className="hidden h-10 w-10 text-[#D4AF57] sm:block" strokeWidth={1} />
             </motion.div>
             <div className="mt-14 grid gap-6 lg:grid-cols-3">
-              {projects.map((project, index) => (
+              {contractorProjects.map((project, index) => (
                 <motion.article key={project.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="group">
                   <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
-                    <img src={project.image} alt={project.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <img src={project.image} alt={project.name} style={{ objectPosition: project.imagePosition }} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 p-7">
                       <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-white/60"><MapPin className="h-3 w-3 text-[#D4AF57]" />{project.location}</div>
                       <h3 className="mt-3 font-serif text-3xl font-bold">{project.name}</h3>
                       <p className="mt-2 text-sm text-white/60">{project.type}</p>
                       <div className="mt-6 flex items-center justify-between border-t border-white/20 pt-5">
-                        <span className="text-sm font-bold text-[#D4AF57]">{project.price}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#D4AF57]">{project.relationship}</span>
                         <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25"><ChevronRight className="h-4 w-4" /></span>
                       </div>
                     </div>

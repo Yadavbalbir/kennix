@@ -80,7 +80,7 @@ export default function V2Page({ openCircleModal }) {
 
   return (
     <div className="min-h-screen overflow-hidden bg-[#F4EFE5] text-[#10271F] selection:bg-[#C89C45] selection:text-[#10271F]">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-[#173F32]/10 bg-[#F4EFE5]/90 backdrop-blur-xl">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-[#173F32]/10 bg-[#F4EFE5]">
         <div className="mx-auto flex h-24 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12">
           <a href="#top" aria-label="KENNIX V2 home">
             <KennixLogo size="sm" />
@@ -125,8 +125,7 @@ export default function V2Page({ openCircleModal }) {
 
       <main>
         <section id="top" className="relative min-h-screen px-5 pb-16 pt-32 sm:px-8 lg:px-12">
-          <motion.div className="absolute -left-24 top-28 h-96 w-96 rounded-full bg-[#D4AF57]/20 blur-[100px]" animate={{ x: [0, 50, 0], y: [0, 30, 0] }} transition={{ duration: 14, repeat: Infinity }} />
-          <motion.div className="absolute -right-20 bottom-10 h-80 w-80 rounded-full bg-[#4F7A68]/15 blur-[100px]" animate={{ x: [0, -45, 0], y: [0, -25, 0] }} transition={{ duration: 17, repeat: Infinity }} />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_8%_20%,rgba(212,175,87,0.14),transparent_30%),radial-gradient(circle_at_94%_82%,rgba(79,122,104,0.1),transparent_28%)]" />
           <div className="relative mx-auto grid min-h-[760px] max-w-[1440px] items-center gap-12 lg:grid-cols-12">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="lg:col-span-6">
               <div className="mb-8 flex items-center gap-4">
@@ -144,7 +143,7 @@ export default function V2Page({ openCircleModal }) {
                 <button onClick={openCircleModal} className="group rounded-full bg-[#153D30] px-7 py-4 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_35px_rgba(21,61,48,0.2)] hover:-translate-y-1">
                   Create your Circle <ArrowRight className="ml-2 inline h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
-                <a href="#projects" className="rounded-full border border-[#173F32]/20 bg-white/45 px-7 py-4 text-center text-xs font-bold uppercase tracking-[0.14em] backdrop-blur-sm hover:bg-white">Explore projects</a>
+                <a href="#projects" className="rounded-full border border-[#173F32]/20 bg-white/70 px-7 py-4 text-center text-xs font-bold uppercase tracking-[0.14em] hover:bg-white">Explore projects</a>
               </div>
               <div className="mt-14 grid max-w-xl grid-cols-3 border-y border-[#173F32]/12 py-5">
                 {[['One', 'connected journey'], ['Visible', 'quality checks'], ['Built', 'around people']].map(([top, bottom]) => (
@@ -173,18 +172,18 @@ export default function V2Page({ openCircleModal }) {
                   <source src="/kennix-hero-story.mp4" type="video/mp4" />
                 </video>
                 <div className="absolute right-5 top-5 flex gap-2">
-                  <button onClick={toggleHeroPlayback} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-black/55 text-white backdrop-blur-md" aria-label={heroPlaying ? 'Pause V2 hero film' : 'Play V2 hero film'}>
+                  <button onClick={toggleHeroPlayback} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-black/75 text-white" aria-label={heroPlaying ? 'Pause V2 hero film' : 'Play V2 hero film'}>
                     {heroPlaying ? <Pause className="h-3.5 w-3.5 fill-current" /> : <Play className="ml-0.5 h-3.5 w-3.5 fill-current" />}
                   </button>
-                  <button onClick={toggleHeroSound} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-black/55 text-white backdrop-blur-md" aria-label={heroMuted ? 'Enable V2 hero sound' : 'Mute V2 hero sound'}>
+                  <button onClick={toggleHeroSound} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-black/75 text-white" aria-label={heroMuted ? 'Enable V2 hero sound' : 'Mute V2 hero sound'}>
                     {heroMuted ? <Volume2 className="h-3.5 w-3.5" /> : <VolumeX className="h-3.5 w-3.5" />}
                   </button>
                 </div>
               </div>
-              <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute -bottom-8 -left-6 rounded-2xl border border-white/50 bg-white/80 p-5 shadow-xl backdrop-blur-md sm:-left-10">
+              <div className="absolute -bottom-8 -left-6 rounded-2xl border border-white/50 bg-white p-5 shadow-xl sm:-left-10">
                 <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#87651F]">The KENNIX promise</p>
                 <p className="mt-2 max-w-[220px] font-serif text-xl font-bold">Independent homes. Shared belonging.</p>
-              </motion.div>
+              </div>
             </motion.div>
           </div>
         </section>

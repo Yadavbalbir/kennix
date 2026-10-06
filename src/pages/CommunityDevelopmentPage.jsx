@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import ThreeCanvasBG from '../components/ThreeCanvasBG';
 import { 
   Users, 
   HeartHandshake, 
@@ -59,7 +58,7 @@ export default function CommunityDevelopmentPage({ openCircleModal, setActivePag
       
       {/* Hero */}
       <section className="relative min-h-[75vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 border-b border-amber-500/10">
-        <ThreeCanvasBG density={55} variant="hero" className="opacity-70" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(214,175,55,0.11),transparent_56%)]" />
 
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -154,7 +153,7 @@ export default function CommunityDevelopmentPage({ openCircleModal, setActivePag
 
       {/* Who Can Create a Circle */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-amber-500/10 relative overflow-hidden">
-        <ThreeCanvasBG density={35} variant="emerald" className="opacity-30" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.055),transparent_62%)]" />
 
         <div className="relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-14">
@@ -247,7 +246,7 @@ export default function CommunityDevelopmentPage({ openCircleModal, setActivePag
 
       {/* Final CTA */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center space-y-6 overflow-hidden">
-        <ThreeCanvasBG density={45} variant="gold" className="opacity-60" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(214,175,55,0.1),transparent_58%)]" />
 
         <div className="relative z-10 space-y-6">
           <h2 className="text-3xl sm:text-5xl font-serif font-bold text-white">

@@ -345,12 +345,12 @@ export default function HomePage({
       <section className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-amber-500/10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
-            <p className="text-xs font-bold text-amber-500 tracking-widest uppercase">Built Experience</p>
+            <p className="text-xs font-bold text-amber-500 tracking-widest uppercase">Selected Portfolio</p>
             <h2 className="mt-3 text-4xl sm:text-5xl font-serif font-bold text-theme-heading">
-              Contractor-Built Projects
+              KENNIX Projects
             </h2>
             <p className="mt-3 max-w-2xl text-sm text-theme-body">
-              Selected residential projects completed by the contractor associated with KENNIX.
+              Selected residential projects by KENNIX.
             </p>
           </div>
           <button

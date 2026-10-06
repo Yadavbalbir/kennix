@@ -304,8 +304,8 @@ export default function V2Page({ openCircleModal }) {
             <div className="mt-14 grid gap-6 lg:grid-cols-3">
               {contractorProjects.map((project, index) => (
                 <motion.article key={project.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="group">
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
-                    <img src={project.image} alt={project.name} style={{ objectPosition: project.imagePosition }} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-[#050706]">
+                    <img src={project.image} alt={project.name} className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 p-7">
                       <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-white/60"><MapPin className="h-3 w-3 text-[#D4AF57]" />{project.location}</div>

@@ -20,7 +20,7 @@ export default function Footer({ setActivePage, openCircleModal, theme }) {
         
         {/* Brand Summary */}
         <div className="md:col-span-4 space-y-4">
-          <div className="inline-flex rounded-xl bg-[#F7F4EC] px-3 py-2">
+          <div className="inline-flex overflow-hidden rounded-xl bg-black px-2 py-1">
             <KennixLogo size="md" />
           </div>
           <p className={`leading-relaxed font-sans text-xs pt-2 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>

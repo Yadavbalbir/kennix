@@ -369,8 +369,8 @@ export default function HomePage({
               whileHover={{ y: -5 }}
               className="rounded-2xl glass-card overflow-hidden flex flex-col"
             >
-              <div className="relative h-44 overflow-hidden">
-                <img src={project.image} alt={project.name} style={{ objectPosition: project.imagePosition }} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
+              <div className="relative flex h-52 items-center justify-center overflow-hidden bg-[#050706]">
+                <img src={project.image} alt={project.name} className="w-full h-full object-contain transition-transform duration-700 hover:scale-[1.02]" />
                 <span className="absolute top-3 left-3 bg-black/80 text-[#E5C77F] text-[10px] font-bold px-2.5 py-1 rounded-md">
                   {project.stage}
                 </span>

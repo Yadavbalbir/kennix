@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
+  Maximize2,
   X,
   MapPin,
   Sparkles,
 } from 'lucide-react';
+import FullscreenImageModal from './FullscreenImageModal';
 
 export default function ProjectDetailModal({ project, isOpen, onClose, openCircleModal }) {
+  const [imageFullscreen, setImageFullscreen] = useState(false);
+
   if (!isOpen || !project) return null;
 
   return (
@@ -13,14 +17,13 @@ export default function ProjectDetailModal({ project, isOpen, onClose, openCircl
       <div className="relative w-full max-w-4xl glass-card rounded-2xl border border-amber-500/30 shadow-[0_25px_60px_rgba(0,0,0,0.95)] overflow-hidden flex flex-col max-h-[92vh]">
         
         {/* Header Image & Title Banner */}
-        <div className="relative h-64 sm:h-80 w-full overflow-hidden">
+        <div className="relative flex h-[44vh] min-h-72 max-h-[560px] w-full items-center justify-center overflow-hidden bg-[#030504]">
           <img 
             src={project.image} 
             alt={project.name} 
-            style={{ objectPosition: project.imagePosition }}
-            className="w-full h-full object-cover"
+            className="h-full w-full object-contain"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#070A09] via-[#070A09]/40 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#070A09] via-transparent to-black/15" />
           
           {/* Close button */}
           <button 
@@ -29,6 +32,15 @@ export default function ProjectDetailModal({ project, isOpen, onClose, openCircl
             aria-label="Close project details"
           >
             <X className="w-5 h-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => setImageFullscreen(true)}
+            className="absolute right-16 top-4 z-10 inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.12em] text-white backdrop-blur-sm transition-colors hover:bg-[#D6B56C] hover:text-[#10271F]"
+            aria-label={`View full image of ${project.name}`}
+          >
+            <Maximize2 className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">View full image</span>
           </button>
 
           {/* Project Header Info */}
@@ -113,6 +125,12 @@ export default function ProjectDetailModal({ project, isOpen, onClose, openCircl
         </div>
 
       </div>
+      <FullscreenImageModal
+        src={project.image}
+        alt={project.name}
+        isOpen={imageFullscreen}
+        onClose={() => setImageFullscreen(false)}
+      />
     </div>
   );
 }

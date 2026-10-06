@@ -4,13 +4,16 @@ import {
   MapPin, 
   Home, 
   ChevronRight, 
+  Maximize2,
   Users
 } from 'lucide-react';
 import { contractorProjects } from '../data/contractorProjects';
+import FullscreenImageModal from '../components/FullscreenImageModal';
 
 export default function ProjectsPage({ setSelectedProject, openCircleModal }) {
   const [filterType, setFilterType] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [fullscreenProject, setFullscreenProject] = useState(null);
 
   const filtered = contractorProjects.filter(p => {
     const matchesCat = filterType === 'all' || p.category === filterType;
@@ -74,11 +77,19 @@ export default function ProjectsPage({ setSelectedProject, openCircleModal }) {
               className="rounded-2xl glass-card border border-emerald-500/20 overflow-hidden glass-card-hover flex flex-col justify-between"
             >
               <div>
-                <div className="relative h-52 overflow-hidden">
-                  <img src={prj.image} alt={prj.name} style={{ objectPosition: prj.imagePosition }} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="relative flex h-64 items-center justify-center overflow-hidden bg-[#050706]">
+                  <img src={prj.image} alt={prj.name} className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
                   <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-sm text-[#E5C77F] text-[10px] font-bold px-3 py-1 rounded-md border border-[#D6B56C]/30">
                     {prj.stage}
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => setFullscreenProject(prj)}
+                    className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/70 text-white backdrop-blur-sm transition-colors hover:bg-[#D6B56C] hover:text-[#10271F]"
+                    aria-label={`View full image of ${prj.name}`}
+                  >
+                    <Maximize2 className="h-4 w-4" />
+                  </button>
                 </div>
 
                 <div className="p-5 space-y-3">
@@ -125,6 +136,13 @@ export default function ProjectsPage({ setSelectedProject, openCircleModal }) {
           <span>CREATE YOUR CIRCLE</span>
         </button>
       </section>
+
+      <FullscreenImageModal
+        src={fullscreenProject?.image}
+        alt={fullscreenProject?.name}
+        isOpen={!!fullscreenProject}
+        onClose={() => setFullscreenProject(null)}
+      />
     </div>
   );
 }

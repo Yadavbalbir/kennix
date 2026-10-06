@@ -95,7 +95,9 @@ export default function ProjectDetailModal({ project, isOpen, onClose, openCircl
 
           <div className="rounded-xl border border-amber-500/20 bg-amber-500/[0.06] p-4">
             <p className="text-xs leading-6 text-slate-300">
-              This completed development is presented as part of KENNIX's selected project portfolio.
+              {project.stage === 'Proposed'
+                ? "This proposed villa concept is presented as part of KENNIX's selected project portfolio."
+                : "This completed development is presented as part of KENNIX's selected project portfolio."}
             </p>
           </div>
 

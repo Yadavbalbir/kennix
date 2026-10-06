@@ -294,9 +294,9 @@ export default function V2Page({ openCircleModal }) {
           <div className="mx-auto max-w-[1440px]">
             <motion.div {...reveal} className="flex items-end justify-between gap-6">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#D4AF57]">Built experience</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#D4AF57]">KENNIX Projects</p>
                 <h2 className="mt-5 font-serif text-5xl font-bold sm:text-7xl">Work that stands.</h2>
-                <p className="mt-5 max-w-xl text-sm leading-7 text-white/55">Selected residential projects completed by the contractor associated with KENNIX.</p>
+                <p className="mt-5 max-w-xl text-sm leading-7 text-white/55">Selected residential projects by KENNIX.</p>
               </div>
               <ArrowRight className="hidden h-10 w-10 text-[#D4AF57] sm:block" strokeWidth={1} />
             </motion.div>

@@ -80,7 +80,7 @@ export default function ProjectDetailModal({ project, isOpen, onClose, openCircl
               <span className="text-sm font-semibold text-emerald-400">{project.scope}</span>
             </div>
             <div>
-              <span className="text-[11px] text-slate-400 uppercase font-mono block">Experience</span>
+              <span className="text-[11px] text-slate-400 uppercase font-mono block">Portfolio</span>
               <span className="text-sm font-semibold text-amber-300">{project.relationship}</span>
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function ProjectDetailModal({ project, isOpen, onClose, openCircl
 
           <div className="rounded-xl border border-amber-500/20 bg-amber-500/[0.06] p-4">
             <p className="text-xs leading-6 text-slate-300">
-              This project is shown as evidence of prior contractor experience. It is not presented as a current KENNIX development or an active sales listing.
+              This completed development is presented as part of KENNIX's selected project portfolio.
             </p>
           </div>
 

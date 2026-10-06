@@ -29,10 +29,10 @@ export default function ProjectsPage({ setSelectedProject, openCircleModal }) {
             BUILT EXPERIENCE
           </span>
           <h1 className="text-4xl sm:text-6xl font-serif font-bold text-white leading-tight">
-            Contractor-Built Portfolio
+            KENNIX Projects
           </h1>
           <p className="text-slate-300 text-sm">
-            Selected residential projects completed across Hyderabad by the contractor associated with KENNIX.
+            Selected residential projects by KENNIX across Hyderabad.
           </p>
         </div>
 
@@ -106,7 +106,7 @@ export default function ProjectsPage({ setSelectedProject, openCircleModal }) {
                   </div>
 
                   <div className="pt-2 border-t border-slate-800 flex items-center justify-between">
-                    <span className="text-[10px] text-slate-400 font-mono uppercase tracking-wider">Experience</span>
+                    <span className="text-[10px] text-slate-400 font-mono uppercase tracking-wider">Portfolio</span>
                     <span className="text-xs font-bold text-amber-300">{prj.relationship}</span>
                   </div>
                 </div>

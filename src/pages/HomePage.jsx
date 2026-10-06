@@ -13,7 +13,6 @@ import {
   Volume2,
   VolumeX,
 } from 'lucide-react';
-import ThreeCanvasBG from '../components/ThreeCanvasBG';
 import { featuredContractorProjects } from '../data/contractorProjects';
 
 const audiences = [
@@ -121,7 +120,7 @@ export default function HomePage({
             className="lg:col-span-5"
           >
             <motion.div
-              className="inline-flex items-center gap-3 rounded-full border border-[#173F32]/15 bg-white/70 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#715515] shadow-[0_8px_28px_rgba(23,63,50,0.07)] backdrop-blur-sm"
+              className="inline-flex items-center gap-3 rounded-full border border-[#173F32]/15 bg-white px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#715515] shadow-[0_8px_28px_rgba(23,63,50,0.07)]"
               whileHover={{ y: -2, boxShadow: '0 12px 32px rgba(23,63,50,0.12)' }}
             >
               <motion.span
@@ -209,7 +208,7 @@ export default function HomePage({
                 <div className="absolute right-3 top-3 flex items-center gap-2">
                   <button
                     onClick={toggleHeroPlayback}
-                    className="h-8 w-8 rounded-full border border-white/25 bg-black/55 text-white backdrop-blur-md flex items-center justify-center hover:bg-black/70"
+                    className="h-8 w-8 rounded-full border border-white/25 bg-black/70 text-white flex items-center justify-center hover:bg-black/85"
                     aria-label={heroPlaying ? 'Pause hero video' : 'Play hero video'}
                   >
                     {heroPlaying
@@ -218,7 +217,7 @@ export default function HomePage({
                   </button>
                   <button
                     onClick={toggleHeroSound}
-                    className="rounded-full border border-white/25 bg-black/55 px-3.5 py-2 text-[9px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md inline-flex items-center gap-2 hover:bg-black/70"
+                    className="rounded-full border border-white/25 bg-black/70 px-3.5 py-2 text-[9px] font-semibold uppercase tracking-[0.14em] text-white inline-flex items-center gap-2 hover:bg-black/85"
                     aria-label={heroMuted ? 'Play hero video with sound' : 'Mute hero video'}
                   >
                     {heroMuted ? <Volume2 className="w-3.5 h-3.5 text-[#D6B56C]" /> : <VolumeX className="w-3.5 h-3.5 text-[#D6B56C]" />}
@@ -399,7 +398,7 @@ export default function HomePage({
       </section>
 
       <section className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
-        <ThreeCanvasBG density={38} variant="gold" theme={theme} className="opacity-50" />
+        <div className={`absolute inset-0 ${isDark ? 'bg-[radial-gradient(circle_at_50%_35%,rgba(214,181,108,0.08),transparent_58%)]' : 'bg-[radial-gradient(circle_at_50%_35%,rgba(179,143,41,0.08),transparent_58%)]'}`} />
         <div className={`absolute inset-0 ${isDark ? 'bg-[#040706]/55' : 'bg-white/45'}`} />
         <motion.div {...reveal} className="relative z-10 max-w-5xl mx-auto">
           <h2 className="text-4xl sm:text-6xl font-serif font-bold text-theme-heading leading-tight">

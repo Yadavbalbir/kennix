@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
 import {
   ArrowRight,
   Building2,
@@ -51,8 +50,6 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const progressScale = useSpring(scrollYProgress, { stiffness: 130, damping: 28, mass: 0.2 });
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 24);
@@ -85,8 +82,8 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#F7F4EC]/95 border-black/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-xl'
-          : 'bg-[#F7F4EC]/90 border-black/10 backdrop-blur-md'
+          ? 'bg-[#F7F4EC] border-black/10 shadow-[0_8px_24px_rgba(0,0,0,0.1)]'
+          : 'bg-[#F7F4EC] border-black/10'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -125,7 +122,7 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
 
               {servicesOpen && (
                 <div className="absolute top-full right-0 pt-4 w-[420px]">
-                  <div className="rounded-2xl border border-white/10 bg-[#0D100F]/98 p-2 shadow-[0_24px_80px_rgba(0,0,0,0.5)] backdrop-blur-2xl">
+                  <div className="rounded-2xl border border-white/10 bg-[#0D100F] p-2 shadow-[0_24px_80px_rgba(0,0,0,0.5)]">
                     <div className="px-4 py-3 border-b border-white/10">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D6B56C]">Our expertise</p>
                       <p className="mt-1 text-xs text-white/50">One connected development journey.</p>
@@ -225,10 +222,7 @@ export default function Navbar({ activePage, setActivePage, openCircleModal }) {
           </div>
         </div>
       )}
-      <motion.div
-        className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-gradient-to-r from-[#173F32] via-[#D6B56C] to-[#A27B26]"
-        style={{ scaleX: progressScale }}
-      />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-[#173F32]/45 via-[#D6B56C] to-[#A27B26]/45" />
     </header>
   );
 }

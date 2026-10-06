@@ -61,8 +61,7 @@ const packages = [
 export default function PackagesPage({ openCircleModal }) {
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#F5F0E6] pt-20 text-[#10271F]">
-      <div className="pointer-events-none absolute -left-32 top-28 h-96 w-96 rounded-full bg-[#D4AF57]/15 blur-[110px]" />
-      <div className="pointer-events-none absolute -right-20 bottom-20 h-96 w-96 rounded-full bg-[#315D4D]/10 blur-[110px]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_5%_18%,rgba(212,175,87,0.13),transparent_28%),radial-gradient(circle_at_95%_82%,rgba(49,93,77,0.08),transparent_28%)]" />
 
       <section className="relative mx-auto max-w-[1440px] px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <motion.div

@@ -79,13 +79,13 @@ export default function ProjectsPage({ setSelectedProject, openCircleModal }) {
               <div>
                 <div className="relative flex h-64 items-center justify-center overflow-hidden bg-[#050706]">
                   <img src={prj.image} alt={prj.name} className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
-                  <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-sm text-[#E5C77F] text-[10px] font-bold px-3 py-1 rounded-md border border-[#D6B56C]/30">
+                  <div className="absolute top-3 left-3 bg-black/90 text-[#E5C77F] text-[10px] font-bold px-3 py-1 rounded-md border border-[#D6B56C]/30">
                     {prj.stage}
                   </div>
                   <button
                     type="button"
                     onClick={() => setFullscreenProject(prj)}
-                    className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/70 text-white backdrop-blur-sm transition-colors hover:bg-[#D6B56C] hover:text-[#10271F]"
+                    className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/85 text-white transition-colors hover:bg-[#D6B56C] hover:text-[#10271F]"
                     aria-label={`View full image of ${prj.name}`}
                   >
                     <Maximize2 className="h-4 w-4" />

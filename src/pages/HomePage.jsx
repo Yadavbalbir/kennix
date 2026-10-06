@@ -350,7 +350,7 @@ export default function HomePage({
               KENNIX Projects
             </h2>
             <p className="mt-3 max-w-2xl text-sm text-theme-body">
-              Selected proposed and completed residential projects by KENNIX.
+              Selected proposed and completed residential projects by KENNIX. New projects are undertaken across India.
             </p>
           </div>
           <button

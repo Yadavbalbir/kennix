@@ -8,7 +8,6 @@ import {
   ArrowRight, 
   CheckCircle2, 
   ShieldCheck, 
-  Calculator,
   Compass,
   Layers,
   ChevronRight
@@ -187,30 +186,54 @@ export default function CommunityDevelopmentPage({ openCircleModal, setActivePag
       </section>
 
       {/* Real-Life Scenario Example */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto border-b border-emerald-950/60">
-        <div className="p-8 rounded-3xl glass-emerald border border-emerald-500/40 space-y-6">
+      <section id="real-life-scenario" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-emerald-950/60">
+        <div className="p-6 sm:p-8 rounded-3xl glass-emerald border border-emerald-500/40 space-y-7">
           <div className="flex items-center space-x-3">
-            <Calculator className="w-8 h-8 text-amber-400" />
+            <Users className="w-8 h-8 text-amber-400" />
             <div>
               <h3 className="text-2xl font-serif font-bold text-white">Real-Life Example Scenario</h3>
-              <p className="text-xs text-amber-300/80">How KENNIX brings diverse individual requirements into one cohesive development.</p>
+              <p className="text-xs text-amber-300/80">How KENNIX turns a shared vision into a thoughtfully planned development.</p>
             </div>
           </div>
 
-          <div className="p-5 rounded-2xl bg-black/40 border border-emerald-800/40 space-y-4">
-            <h4 className="text-sm font-bold text-white">Imagine: 12 Families Want to Live Together</h4>
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
-              <div className="p-2.5 rounded-lg bg-emerald-950 text-slate-200 border border-emerald-800/60">Family 1 → 2 BHK</div>
-              <div className="p-2.5 rounded-lg bg-emerald-950 text-slate-200 border border-emerald-800/60">Family 2 → 3 BHK</div>
-              <div className="p-2.5 rounded-lg bg-emerald-950 text-slate-200 border border-emerald-800/60">Family 3 → 4 BHK</div>
-              <div className="p-2.5 rounded-lg bg-emerald-950 text-slate-200 border border-emerald-800/60">Family 4 → Villa</div>
-              <div className="p-2.5 rounded-lg bg-emerald-950 text-slate-200 border border-emerald-800/60">Family 5 → Large 3 BHK</div>
+          <div className="p-5 sm:p-6 rounded-2xl bg-black/40 border border-emerald-800/40 space-y-6">
+            <h4 className="text-base font-bold text-white">Imagine: 5 Friends or Like-Minded Families Want to Live Together</h4>
+
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+              {[
+                {
+                  title: 'Identify the Group',
+                  description: '5 friends or like-minded families decide to build and live together.',
+                },
+                {
+                  title: 'Understand Their Needs',
+                  description: 'KENNIX understands their preferred location, home requirements, budget and lifestyle expectations.',
+                },
+                {
+                  title: 'Identify the Right Land',
+                  description: 'We help identify a suitable land parcel based on the group\'s requirements and project feasibility.',
+                },
+                {
+                  title: 'Design Their Project',
+                  description: 'The complete development is planned around their common requirements—homes, shared spaces and amenities.',
+                },
+                {
+                  title: 'Build & Deliver',
+                  description: 'KENNIX manages the construction journey to create one cohesive community for the group.',
+                },
+              ].map((item, index) => (
+                <div key={item.title} className="relative rounded-xl border border-emerald-700/50 bg-emerald-950/80 p-4">
+                  <span className="font-serif text-2xl font-bold text-amber-400">0{index + 1}</span>
+                  <h5 className="mt-4 text-[11px] font-bold uppercase tracking-[0.12em] text-white">{item.title}</h5>
+                  <p className="mt-2 text-[11px] leading-5 text-slate-400">{item.description}</p>
+                </div>
+              ))}
             </div>
 
-            <div className="pt-2 border-t border-emerald-900/60">
-              <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-2">They Collectively Desire:</span>
+            <div className="pt-5 border-t border-emerald-900/60">
+              <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-3">Their Shared Vision Could Include:</span>
               <div className="flex flex-wrap gap-2 text-xs">
-                {['Clubhouse', 'Children\'s Area', 'Senior-Friendly Spaces', 'Central Lawn', '24/7 Security', 'Community Hall'].map((am, i) => (
+                {['Children\'s Play Area', 'Senior-Friendly Spaces', 'Central Lawn', 'Swimming Pool', 'Sports Area', 'Community Space'].map((am, i) => (
                   <span key={i} className="px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/30">
                     ✓ {am}
                   </span>
@@ -219,7 +242,7 @@ export default function CommunityDevelopmentPage({ openCircleModal, setActivePag
             </div>
 
             <p className="text-xs text-slate-300 pt-2 leading-relaxed">
-              KENNIX brings these individual home choices and shared amenities together, evaluating site feasibility, architectural engineering, and cost optimization so everyone gets their ideal private home inside one vibrant development.
+              KENNIX brings people with a shared vision together and transforms their requirements into a thoughtfully planned development—from identifying the right land and designing the project to construction and delivery.
             </p>
           </div>
         </div>

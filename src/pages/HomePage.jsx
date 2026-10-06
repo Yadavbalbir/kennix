@@ -132,13 +132,13 @@ export default function HomePage({
             </motion.div>
 
             <h1 className="mt-7 text-5xl sm:text-6xl lg:text-7xl font-serif font-bold leading-[0.94] tracking-[-0.03em] text-[#10251D]">
-              Your home.
-              <span className="block text-[#A27B26]">Your people, closer.</span>
+              Find Your Home.
+              <span className="block text-[#A27B26]">Live Closer to Your People.</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-[#31453D]">
-              Discover thoughtfully planned homes where families, friends and communities can live
-              nearby—together when you want, independent when you need.
+              KENNIX brings property and community together. KENNIX is about finding a home AND
+              having the option to live closer to people who matter to you.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">

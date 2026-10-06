@@ -32,7 +32,7 @@ export default function ProjectsPage({ setSelectedProject, openCircleModal }) {
             KENNIX Projects
           </h1>
           <p className="text-slate-300 text-sm">
-            Selected residential projects by KENNIX across Hyderabad.
+            Selected proposed and completed residential projects by KENNIX.
           </p>
         </div>
 

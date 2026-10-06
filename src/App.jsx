@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import CircleBuilderModal from './components/CircleBuilderModal';
+import EnquiryModal from './components/EnquiryModal';
 import ProjectDetailModal from './components/ProjectDetailModal';
 
 // Pages
@@ -36,7 +36,7 @@ export default function App() {
     }
     return 'dark';
   });
-  const [isCircleModalOpen, setIsCircleModalOpen] = useState(false);
+  const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
@@ -61,14 +61,27 @@ export default function App() {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
   };
 
-  const openCircleModal = () => setIsCircleModalOpen(true);
-  const closeCircleModal = () => setIsCircleModalOpen(false);
+  const openCircleModal = () => setIsEnquiryModalOpen(true);
+  const closeEnquiryModal = () => setIsEnquiryModalOpen(false);
+
+  const enquiryExperience = (
+    <>
+      <button
+        type="button"
+        onClick={openCircleModal}
+        className="fixed bottom-20 right-4 z-40 inline-flex items-center gap-2 rounded-full border border-[#D6B56C]/40 bg-[#153D30] px-5 py-3 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_35px_rgba(0,0,0,0.3)] transition-transform hover:-translate-y-1 sm:bottom-6 sm:right-6"
+      >
+        Enquire Now
+      </button>
+      <EnquiryModal isOpen={isEnquiryModalOpen} onClose={closeEnquiryModal} />
+    </>
+  );
 
   if (isV2) {
     return (
       <>
         <V2Page openCircleModal={openCircleModal} />
-        <CircleBuilderModal isOpen={isCircleModalOpen} onClose={closeCircleModal} />
+        {enquiryExperience}
       </>
     );
   }
@@ -157,11 +170,8 @@ export default function App() {
         theme={theme}
       />
 
-      {/* Interactive Circle Builder Wizard Modal */}
-      <CircleBuilderModal 
-        isOpen={isCircleModalOpen} 
-        onClose={closeCircleModal} 
-      />
+      {/* Site-wide enquiry experience */}
+      {enquiryExperience}
 
       {/* Project Detail Quick View Modal */}
       <ProjectDetailModal 

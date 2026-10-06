@@ -32,7 +32,7 @@ export default function ProjectsPage({ setSelectedProject, openCircleModal }) {
             KENNIX Projects
           </h1>
           <p className="text-slate-300 text-sm">
-            Selected proposed and completed residential projects by KENNIX.
+            Selected proposed and completed residential projects by KENNIX. New projects are undertaken across India.
           </p>
         </div>
 
@@ -127,7 +127,7 @@ export default function ProjectsPage({ setSelectedProject, openCircleModal }) {
       </section>
 
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center space-y-6">
-        <h2 className="text-3xl font-serif font-bold text-white">Planning a Residential Project or a Circle?</h2>
+        <h2 className="text-3xl font-serif font-bold text-white">Planning a Residential Project or a Circle Anywhere in India?</h2>
         <button
           onClick={openCircleModal}
           className="px-8 py-3.5 rounded-full bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-amber-300 transition-all inline-flex items-center space-x-2"

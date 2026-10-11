@@ -14,8 +14,8 @@ export default function KennixLogo({ size = "md", className = "" }) {
     <div className={`inline-flex items-center cursor-pointer select-none group ${className}`}>
       <img 
         src="/kennix-logo-full.png"
-        alt="KENNIX - Connecting People, Creating Places Together" 
-        className={`${heightClass} w-auto rounded-md object-contain opacity-100 drop-shadow-[0_6px_18px_rgba(0,0,0,0.18)] transition-all duration-300 group-hover:scale-[1.015]`}
+        alt="KENNIX Real Estate"
+        className={`${heightClass} w-auto object-contain opacity-100 drop-shadow-[0_6px_18px_rgba(0,0,0,0.14)] transition-all duration-300 group-hover:scale-[1.015]`}
       />
     </div>
   );
